@@ -1,0 +1,5 @@
+public final class org/kompars/envelop/mox/ktor/MoxKtorExtensionsKt {
+	public static final fun moxWebhooks (Lio/ktor/server/routing/Route;Ljava/lang/String;Lorg/kompars/envelop/mox/MoxWebhooks;)V
+	public static synthetic fun moxWebhooks$default (Lio/ktor/server/routing/Route;Ljava/lang/String;Lorg/kompars/envelop/mox/MoxWebhooks;ILjava/lang/Object;)V
+}
+

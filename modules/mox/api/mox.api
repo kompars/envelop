@@ -1,0 +1,850 @@
+public final class org/kompars/envelop/mox/ErrorException : java/lang/Throwable {
+	public fun <init> (Lorg/kompars/envelop/mox/model/Error;)V
+	public final fun getError ()Lorg/kompars/envelop/mox/model/Error;
+}
+
+public final class org/kompars/envelop/mox/MoxApi {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun messageDelete (Lorg/kompars/envelop/mox/model/MessageDeleteRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messageFlagsAdd (Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messageFlagsRemove (Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messageGet (Lorg/kompars/envelop/mox/model/MessageGetRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messageMove (Lorg/kompars/envelop/mox/model/MessageMoveRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messagePartGet (Lorg/kompars/envelop/mox/model/MessagePartGetRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messageRawGet (Lorg/kompars/envelop/mox/model/MessageRawGetRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun messageSend (Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun messageSend$default (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/mox/MoxFileContentProvider : org/kompars/envelop/MailFileContentProvider {
+	public fun getContent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/mox/MoxIncomingWebhooks : org/kompars/envelop/mox/MoxWebhooks {
+	public fun <init> ()V
+}
+
+public final class org/kompars/envelop/mox/MoxMailSender : org/kompars/envelop/MailSender {
+	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;ZZ)V
+	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
+	public fun send (Lorg/kompars/envelop/MailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/mox/MoxOutgoingWebhooks : org/kompars/envelop/mox/MoxWebhooks {
+	public fun <init> ()V
+}
+
+public final class org/kompars/envelop/mox/MoxReceiver : org/kompars/envelop/MailReceiver {
+	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;)V
+	public fun onMessage (Lkotlin/jvm/functions/Function2;)V
+}
+
+public abstract class org/kompars/envelop/mox/MoxWebhooks {
+	public synthetic fun <init> (Lkotlinx/serialization/KSerializer;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun process (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun registerCallback (Lkotlin/jvm/functions/Function2;)V
+}
+
+public final class org/kompars/envelop/mox/model/Error {
+	public static final field Companion Lorg/kompars/envelop/mox/model/Error$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/Error;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Error;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Error;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/Error$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/Error$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/Error;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Error;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Error$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/File {
+	public static final field Companion Lorg/kompars/envelop/mox/model/File$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/File;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/File;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/File;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContentId ()Ljava/lang/String;
+	public final fun getContentType ()Ljava/lang/String;
+	public final fun getData ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/File$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/File$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/File;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/File;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/File$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Incoming {
+	public static final field Companion Lorg/kompars/envelop/mox/model/Incoming$Companion;
+	public fun <init> (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;)V
+	public synthetic fun <init> (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component10 ()Ljava/util/List;
+	public final fun component11 ()Lkotlinx/datetime/Instant;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component14 ()Lorg/kompars/envelop/mox/model/Structure;
+	public final fun component15 ()Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/util/List;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;)Lorg/kompars/envelop/mox/model/Incoming;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Incoming;ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Incoming;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBcc ()Ljava/util/List;
+	public final fun getCc ()Ljava/util/List;
+	public final fun getDate ()Lkotlinx/datetime/Instant;
+	public final fun getFrom ()Ljava/util/List;
+	public final fun getHtml ()Ljava/lang/String;
+	public final fun getInReplyTo ()Ljava/lang/String;
+	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getMeta ()Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public final fun getReferences ()Ljava/util/List;
+	public final fun getReplyTo ()Ljava/util/List;
+	public final fun getStructure ()Lorg/kompars/envelop/mox/model/Structure;
+	public final fun getSubject ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getTo ()Ljava/util/List;
+	public final fun getVersion ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/Incoming$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/Incoming$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/Incoming;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Incoming;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Incoming$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/IncomingMeta {
+	public static final field Companion Lorg/kompars/envelop/mox/model/IncomingMeta$Companion;
+	public fun <init> (ILjava/lang/String;ZZLjava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;Z)V
+	public final fun component1 ()I
+	public final fun component10 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/util/List;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Lkotlinx/datetime/Instant;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;ZZLjava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;Z)Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/IncomingMeta;ILjava/lang/String;ZZLjava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;ZILjava/lang/Object;)Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAutomated ()Z
+	public final fun getDkimVerifiedDomains ()Ljava/util/List;
+	public final fun getMailFrom ()Ljava/lang/String;
+	public final fun getMailFromValidated ()Z
+	public final fun getMailboxName ()Ljava/lang/String;
+	public final fun getMessageId ()I
+	public final fun getMsgFromValidated ()Z
+	public final fun getRcptTo ()Ljava/lang/String;
+	public final fun getReceived ()Lkotlinx/datetime/Instant;
+	public final fun getRemoteIp ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/IncomingMeta$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/IncomingMeta$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/IncomingMeta;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/IncomingMeta$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Message {
+	public static final field Companion Lorg/kompars/envelop/mox/model/Message$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Lkotlinx/datetime/Instant;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/Message;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Message;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Message;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBcc ()Ljava/util/List;
+	public final fun getCc ()Ljava/util/List;
+	public final fun getDate ()Lkotlinx/datetime/Instant;
+	public final fun getFrom ()Ljava/util/List;
+	public final fun getHtml ()Ljava/lang/String;
+	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getReference ()Ljava/util/List;
+	public final fun getReplyTo ()Ljava/util/List;
+	public final fun getSubject ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getTo ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/Message$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/Message$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/Message;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Message;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Message$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageDeleteRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageDeleteRequest$Companion;
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lorg/kompars/envelop/mox/model/MessageDeleteRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageDeleteRequest;IILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageDeleteRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageDeleteRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageDeleteRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageDeleteRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageDeleteRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageDeleteRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageDeleteResult {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageDeleteResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/mox/model/MessageFlagsAddRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest$Companion;
+	public fun <init> (ILjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (ILjava/util/List;)Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;ILjava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlags ()Ljava/util/List;
+	public final fun getMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageFlagsAddRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageFlagsAddRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageFlagsAddResult {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageFlagsAddResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/mox/model/MessageFlagsRemoveRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest$Companion;
+	public fun <init> (ILjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (ILjava/util/List;)Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;ILjava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlags ()Ljava/util/List;
+	public final fun getMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageFlagsRemoveRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageFlagsRemoveRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageFlagsRemoveResult {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageFlagsRemoveResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/mox/model/MessageGetRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageGetRequest$Companion;
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lorg/kompars/envelop/mox/model/MessageGetRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageGetRequest;IILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageGetRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageGetRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageGetRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageGetRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageGetRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageGetRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageGetResult {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageGetResult$Companion;
+	public fun <init> (Lorg/kompars/envelop/mox/model/Message;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/MessageMeta;)V
+	public final fun component1 ()Lorg/kompars/envelop/mox/model/Message;
+	public final fun component2 ()Lorg/kompars/envelop/mox/model/Structure;
+	public final fun component3 ()Lorg/kompars/envelop/mox/model/MessageMeta;
+	public final fun copy (Lorg/kompars/envelop/mox/model/Message;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/MessageMeta;)Lorg/kompars/envelop/mox/model/MessageGetResult;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageGetResult;Lorg/kompars/envelop/mox/model/Message;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/MessageMeta;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageGetResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessage ()Lorg/kompars/envelop/mox/model/Message;
+	public final fun getMeta ()Lorg/kompars/envelop/mox/model/MessageMeta;
+	public final fun getStructure ()Lorg/kompars/envelop/mox/model/Structure;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageGetResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageGetResult$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageGetResult;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageGetResult;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageGetResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageMeta {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageMeta$Companion;
+	public fun <init> (IZLjava/util/List;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()I
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Z
+	public final fun component9 ()Ljava/util/List;
+	public final fun copy (IZLjava/util/List;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/MessageMeta;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageMeta;IZLjava/util/List;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageMeta;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDkimVerifiedDomains ()Ljava/util/List;
+	public final fun getDsn ()Z
+	public final fun getFlags ()Ljava/util/List;
+	public final fun getMailFrom ()Ljava/lang/String;
+	public final fun getMailFromValidated ()Z
+	public final fun getMailboxName ()Ljava/lang/String;
+	public final fun getMsgFrom ()Ljava/lang/String;
+	public final fun getMsgFromValidated ()Z
+	public final fun getRcptTo ()Ljava/lang/String;
+	public final fun getRemoteIp ()Ljava/lang/String;
+	public final fun getSize ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageMeta$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageMeta$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageMeta;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageMeta;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageMeta$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageMoveRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageMoveRequest$Companion;
+	public fun <init> (ILjava/lang/String;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;)Lorg/kompars/envelop/mox/model/MessageMoveRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageMoveRequest;ILjava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageMoveRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDestMailboxName ()Ljava/lang/String;
+	public final fun getMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageMoveRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageMoveRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageMoveRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageMoveRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageMoveRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageMoveResult {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageMoveResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/mox/model/MessagePartGetRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessagePartGetRequest$Companion;
+	public fun <init> (ILjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (ILjava/util/List;)Lorg/kompars/envelop/mox/model/MessagePartGetRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessagePartGetRequest;ILjava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessagePartGetRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessageId ()I
+	public final fun getPartPath ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessagePartGetRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessagePartGetRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessagePartGetRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessagePartGetRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessagePartGetRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageRawGetRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/MessageRawGetRequest$Companion;
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lorg/kompars/envelop/mox/model/MessageRawGetRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageRawGetRequest;IILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageRawGetRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/MessageRawGetRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/MessageRawGetRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/MessageRawGetRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageRawGetRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/MessageRawGetRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/NameAddress {
+	public static final field Companion Lorg/kompars/envelop/mox/model/NameAddress$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/NameAddress;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/NameAddress;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/NameAddress;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAddress ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/NameAddress$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/NameAddress$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/NameAddress;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/NameAddress;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/NameAddress$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Outgoing {
+	public static final field Companion Lorg/kompars/envelop/mox/model/Outgoing$Companion;
+	public fun <init> (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component10 ()Ljava/lang/Integer;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/util/Map;
+	public final fun component2 ()Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()I
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Lkotlinx/datetime/Instant;
+	public final fun copy (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lorg/kompars/envelop/mox/model/Outgoing;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Outgoing;ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Outgoing;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDsn ()Z
+	public final fun getError ()Ljava/lang/String;
+	public final fun getEvent ()Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public final fun getExtra ()Ljava/util/Map;
+	public final fun getFromId ()Ljava/lang/String;
+	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getQueueMessageId ()I
+	public final fun getSmtpCode ()Ljava/lang/Integer;
+	public final fun getSmtpEnhancedCode ()Ljava/lang/String;
+	public final fun getSubject ()Ljava/lang/String;
+	public final fun getSuppressing ()Z
+	public final fun getVersion ()I
+	public final fun getWebhookQueued ()Lkotlinx/datetime/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/Outgoing$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/Outgoing$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/Outgoing;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Outgoing;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Outgoing$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/OutgoingEvent : java/lang/Enum {
+	public static final field Canceled Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Companion Lorg/kompars/envelop/mox/model/OutgoingEvent$Companion;
+	public static final field Delayed Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Delivered Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Expanded Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Failed Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Relayed Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Suppressed Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static final field Unrecognized Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/kompars/envelop/mox/model/OutgoingEvent;
+	public static fun values ()[Lorg/kompars/envelop/mox/model/OutgoingEvent;
+}
+
+public final class org/kompars/envelop/mox/model/OutgoingEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Part {
+	public fun <init> (Lorg/kompars/envelop/mox/model/PartType;[BLjava/lang/String;Lio/ktor/http/ContentType;Ljava/lang/String;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/mox/model/PartType;[BLjava/lang/String;Lio/ktor/http/ContentType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getContent ()[B
+	public final fun getContentId ()Ljava/lang/String;
+	public final fun getContentType ()Lio/ktor/http/ContentType;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPartType ()Lorg/kompars/envelop/mox/model/PartType;
+}
+
+public final class org/kompars/envelop/mox/model/PartType : java/lang/Enum {
+	public static final field AlternativeFile Lorg/kompars/envelop/mox/model/PartType;
+	public static final field AttachedFile Lorg/kompars/envelop/mox/model/PartType;
+	public static final field InlineFile Lorg/kompars/envelop/mox/model/PartType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getKey ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lorg/kompars/envelop/mox/model/PartType;
+	public static fun values ()[Lorg/kompars/envelop/mox/model/PartType;
+}
+
+public final class org/kompars/envelop/mox/model/SendRequest {
+	public static final field Companion Lorg/kompars/envelop/mox/model/SendRequest$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;Z)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/util/Map;
+	public final fun component13 ()Ljava/util/List;
+	public final fun component14 ()Ljava/util/List;
+	public final fun component15 ()Ljava/util/List;
+	public final fun component16 ()Ljava/util/List;
+	public final fun component17 ()Z
+	public final fun component18 ()Lkotlinx/datetime/Instant;
+	public final fun component19 ()Z
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Lkotlinx/datetime/Instant;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;Z)Lorg/kompars/envelop/mox/model/SendRequest;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;ZILjava/lang/Object;)Lorg/kompars/envelop/mox/model/SendRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAlternativeFiles ()Ljava/util/List;
+	public final fun getAttachedFiles ()Ljava/util/List;
+	public final fun getBcc ()Ljava/util/List;
+	public final fun getCc ()Ljava/util/List;
+	public final fun getDate ()Lkotlinx/datetime/Instant;
+	public final fun getExtra ()Ljava/util/Map;
+	public final fun getFrom ()Ljava/util/List;
+	public final fun getFutureRelease ()Lkotlinx/datetime/Instant;
+	public final fun getHeaders ()Ljava/util/List;
+	public final fun getHtml ()Ljava/lang/String;
+	public final fun getInlineFiles ()Ljava/util/List;
+	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getReference ()Ljava/util/List;
+	public final fun getReplyTo ()Ljava/util/List;
+	public final fun getRequireTls ()Z
+	public final fun getSaveSent ()Z
+	public final fun getSubject ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getTo ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/SendRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/SendRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/SendRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/SendRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/SendRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/SendResult {
+	public static final field Companion Lorg/kompars/envelop/mox/model/SendResult$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lorg/kompars/envelop/mox/model/SendResult;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/SendResult;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/SendResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getSubmissions ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/SendResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/SendResult$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/SendResult;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/SendResult;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/SendResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Structure {
+	public static final field Companion Lorg/kompars/envelop/mox/model/Structure$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
+	public final fun component5 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;)Lorg/kompars/envelop/mox/model/Structure;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Structure;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Structure;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContentId ()Ljava/lang/String;
+	public final fun getContentType ()Ljava/lang/String;
+	public final fun getContentTypeParams ()Ljava/util/Map;
+	public final fun getDecodedSize ()I
+	public final fun getParts ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/Structure$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/Structure$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/Structure;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Structure;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Structure$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Submission {
+	public static final field Companion Lorg/kompars/envelop/mox/model/Submission$Companion;
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;ILjava/lang/String;)Lorg/kompars/envelop/mox/model/Submission;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Submission;Ljava/lang/String;ILjava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Submission;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAddress ()Ljava/lang/String;
+	public final fun getFromId ()Ljava/lang/String;
+	public final fun getQueueMessageId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/mox/model/Submission$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/mox/model/Submission$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/mox/model/Submission;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Submission;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/mox/model/Submission$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+

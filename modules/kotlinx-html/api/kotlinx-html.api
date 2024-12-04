@@ -1,0 +1,4 @@
+public final class org/kompars/envelop/kotlinx/html/MessageBuilderHtmlExtensionsKt {
+	public static final fun htmlBody (Lorg/kompars/envelop/MailMessageBuilder;Lkotlin/jvm/functions/Function1;)V
+}
+

@@ -51,6 +51,10 @@ public data class Structure(
     val contentTypeParams: Map<String, String> = emptyMap(),
     @SerialName("ContentID")
     val contentId: String,
+    @SerialName("ContentDisposition")
+    val contentDisposition: String,
+    @SerialName("Filename")
+    val fileName: String,
     @SerialName("DecodedSize")
     val decodedSize: Int,
     @SerialName("Parts")

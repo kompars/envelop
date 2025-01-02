@@ -7,18 +7,7 @@ import org.kompars.envelop.mox.model.*
 public class MoxReceiver(private val moxApi: MoxApi, private val incomingWebhooks: MoxIncomingWebhooks) : MailReceiver {
     override fun onMessage(block: suspend (MailMessage) -> Unit) {
         incomingWebhooks.registerCallback { incoming ->
-            val files = incoming.structure.flatten().map { (partPath, structure) ->
-                MailFile(
-                    name = structure.contentTypeParams["name"],
-                    contentType = structure.contentType,
-                    contentId = structure.contentId,
-                    contentProvider = MoxFileContentProvider(
-                        moxApi = moxApi,
-                        messageId = incoming.meta.messageId,
-                        partPath = partPath,
-                    )
-                )
-            }
+            val files = incoming.structure.flatten()
 
             val message = MailMessage(
                 from = incoming.from.map { it.toEmailPrincipal() },
@@ -28,8 +17,12 @@ public class MoxReceiver(private val moxApi: MoxApi, private val incomingWebhook
                 subject = incoming.subject,
                 textBody = incoming.text,
                 htmlBody = incoming.html,
-                attachments = files.filter { it.name != null },
-                inlineFiles = files.filter { it.contentId != null },
+                attachments = files
+                    .filter { it.second.contentDisposition == "attachment" }
+                    .map { it.second.toMailFile(incoming.meta.messageId, it.first) },
+                inlineFiles = files
+                    .filter { it.second.contentDisposition == "inline" }
+                    .map { it.second.toMailFile(incoming.meta.messageId, it.first) },
             )
 
             block(message)
@@ -44,6 +37,19 @@ public class MoxReceiver(private val moxApi: MoxApi, private val incomingWebhook
         return listOf(partPath to this) + parts.flatMapIndexed { index, structure ->
             structure.flatten(partPath + index)
         }
+    }
+
+    private fun Structure.toMailFile(messageId: Int, partPath: List<Int>): MailFile {
+        return MailFile(
+            name = fileName.ifEmpty { null },
+            contentType = contentType,
+            contentId = contentId,
+            contentProvider = MoxFileContentProvider(
+                moxApi = moxApi,
+                messageId = messageId,
+                partPath = partPath,
+            )
+        )
     }
 }
 

@@ -4,7 +4,10 @@ import io.ktor.utils.io.*
 import org.kompars.envelop.*
 import org.kompars.envelop.mox.model.*
 
-public class MoxReceiver(private val moxApi: MoxApi, private val incomingWebhooks: MoxIncomingWebhooks) : MailReceiver {
+public class MoxMailReceiver(
+    private val moxApi: MoxApi,
+    public val incomingWebhooks: MoxIncomingWebhooks = MoxIncomingWebhooks(),
+) : MailReceiver {
     override fun onMessage(block: suspend (MailMessage) -> Unit) {
         incomingWebhooks.registerCallback { incoming ->
             val files = incoming.structure.flatten()

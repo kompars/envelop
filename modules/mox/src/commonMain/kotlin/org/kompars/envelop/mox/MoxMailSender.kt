@@ -6,9 +6,9 @@ import org.kompars.envelop.mox.model.*
 
 public class MoxMailSender(
     private val moxApi: MoxApi,
-    private val outgoingWebhooks: MoxOutgoingWebhooks,
     private val requireTls: Boolean = false,
     private val saveSent: Boolean = true,
+    public val outgoingWebhooks: MoxOutgoingWebhooks = MoxOutgoingWebhooks(),
 ) : MailSender {
     override suspend fun send(message: MailMessage) {
         val sendRequest = SendRequest(

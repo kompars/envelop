@@ -24,20 +24,23 @@ public final class org/kompars/envelop/mox/MoxIncomingWebhooks : org/kompars/env
 	public fun <init> ()V
 }
 
+public final class org/kompars/envelop/mox/MoxMailReceiver : org/kompars/envelop/MailReceiver {
+	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getIncomingWebhooks ()Lorg/kompars/envelop/mox/MoxIncomingWebhooks;
+	public fun onMessage (Lkotlin/jvm/functions/Function2;)V
+}
+
 public final class org/kompars/envelop/mox/MoxMailSender : org/kompars/envelop/MailSender {
-	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;ZZ)V
-	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;ZZLorg/kompars/envelop/mox/MoxOutgoingWebhooks;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;ZZLorg/kompars/envelop/mox/MoxOutgoingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getOutgoingWebhooks ()Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;
 	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
 	public fun send (Lorg/kompars/envelop/MailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class org/kompars/envelop/mox/MoxOutgoingWebhooks : org/kompars/envelop/mox/MoxWebhooks {
 	public fun <init> ()V
-}
-
-public final class org/kompars/envelop/mox/MoxReceiver : org/kompars/envelop/MailReceiver {
-	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;)V
-	public fun onMessage (Lkotlin/jvm/functions/Function2;)V
 }
 
 public abstract class org/kompars/envelop/mox/MoxWebhooks {
@@ -783,20 +786,24 @@ public final class org/kompars/envelop/mox/model/SendResult$Companion {
 
 public final class org/kompars/envelop/mox/model/Structure {
 	public static final field Companion Lorg/kompars/envelop/mox/model/Structure$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/Map;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()I
-	public final fun component5 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;)Lorg/kompars/envelop/mox/model/Structure;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Structure;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILjava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Structure;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()I
+	public final fun component7 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;)Lorg/kompars/envelop/mox/model/Structure;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Structure;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Structure;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContentDisposition ()Ljava/lang/String;
 	public final fun getContentId ()Ljava/lang/String;
 	public final fun getContentType ()Ljava/lang/String;
 	public final fun getContentTypeParams ()Ljava/util/Map;
 	public final fun getDecodedSize ()I
+	public final fun getFileName ()Ljava/lang/String;
 	public final fun getParts ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;

@@ -18,8 +18,8 @@ public class MoxMailReceiver(
                 cc = incoming.cc.map { it.toEmailPrincipal() },
                 bcc = incoming.bcc.map { it.toEmailPrincipal() },
                 subject = incoming.subject,
-                textBody = incoming.text,
-                htmlBody = incoming.html,
+                textBody = incoming.text?.ifEmpty { null },
+                htmlBody = incoming.html?.ifEmpty { null },
                 attachments = files
                     .filter { it.second.contentDisposition == "attachment" }
                     .map { it.second.toMailFile(incoming.meta.messageId, it.first) },
@@ -33,7 +33,7 @@ public class MoxMailReceiver(
     }
 
     private fun NameAddress.toEmailPrincipal(): EmailPrincipal {
-        return EmailPrincipal(name = name, address = EmailAddress(address))
+        return EmailPrincipal(name = name?.ifEmpty { null }, address = EmailAddress(address))
     }
 
     private fun Structure.flatten(partPath: List<Int> = listOf(0)): List<Pair<List<Int>, Structure>> {
@@ -67,6 +67,6 @@ public class MoxFileContentProvider internal constructor(
             partPath = partPath,
         )
 
-        return moxApi.messagePartGet(request).readByteArray(Int.MAX_VALUE)
+        return moxApi.messagePartGet(request).toByteArray()
     }
 }

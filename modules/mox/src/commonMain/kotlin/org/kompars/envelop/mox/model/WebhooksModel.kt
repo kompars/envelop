@@ -29,7 +29,7 @@ public data class Incoming(
     @SerialName("References")
     val references: List<String> = emptyList(),
     @SerialName("Date")
-    val date: Instant,
+    val date: Instant? = null,
     @SerialName("Text")
     val text: String?,
     @SerialName("HTML")

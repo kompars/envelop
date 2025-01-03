@@ -208,7 +208,6 @@ public data class NameAddress(
     val address: String,
 )
 
-
 /**
  * [Mox documentation](https://pkg.go.dev/github.com/mjl-/mox/webapi#SendRequest)
  */

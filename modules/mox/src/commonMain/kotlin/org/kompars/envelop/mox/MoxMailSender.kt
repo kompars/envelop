@@ -2,6 +2,7 @@ package org.kompars.envelop.mox
 
 import io.ktor.http.*
 import org.kompars.envelop.*
+import org.kompars.envelop.Submission
 import org.kompars.envelop.mox.model.*
 
 public class MoxMailSender(
@@ -10,7 +11,7 @@ public class MoxMailSender(
     private val saveSent: Boolean = true,
     public val outgoingWebhooks: MoxOutgoingWebhooks = MoxOutgoingWebhooks(),
 ) : MailSender {
-    override suspend fun send(message: MailMessage) {
+    override suspend fun send(message: MailMessage): List<Submission> {
         val sendRequest = SendRequest(
             from = message.from.map { it.toNameAddress() },
             to = message.to.map { it.toNameAddress() },
@@ -41,19 +42,28 @@ public class MoxMailSender(
             )
         }
 
-        moxApi.messageSend(sendRequest, parts)
+        return moxApi.messageSend(sendRequest, parts).submissions.map {
+            Submission(
+                id = it.queueMessageId.toString(),
+                recipient = EmailAddress(it.address),
+            )
+        }
     }
 
-    override fun onDelivery(block: suspend (DeliveryStatus) -> Unit) {
+    override fun onDelivery(block: suspend (Delivery) -> Unit) {
         outgoingWebhooks.registerCallback { outgoing ->
-            val status = when (outgoing.event) {
-                OutgoingEvent.Delivered -> DeliveryStatus.Delivered
-                OutgoingEvent.Delayed -> DeliveryStatus.Delayed
-                OutgoingEvent.Failed, OutgoingEvent.Canceled, OutgoingEvent.Suppressed -> DeliveryStatus.Failed
-                OutgoingEvent.Unrecognized, OutgoingEvent.Expanded, OutgoingEvent.Relayed -> DeliveryStatus.Unknown
-            }
+            val delivery = Delivery(
+                submissionId = outgoing.queueMessageId.toString(),
+                error = outgoing.error?.ifEmpty { null },
+                status = when (outgoing.event) {
+                    OutgoingEvent.Delivered -> DeliveryStatus.Delivered
+                    OutgoingEvent.Delayed -> DeliveryStatus.Delayed
+                    OutgoingEvent.Failed, OutgoingEvent.Canceled, OutgoingEvent.Suppressed -> DeliveryStatus.Failed
+                    OutgoingEvent.Unrecognized, OutgoingEvent.Expanded, OutgoingEvent.Relayed -> DeliveryStatus.Unknown
+                },
+            )
 
-            block(status)
+            block(delivery)
         }
     }
 

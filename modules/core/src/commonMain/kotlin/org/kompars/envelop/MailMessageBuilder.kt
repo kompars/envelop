@@ -1,7 +1,7 @@
 package org.kompars.envelop
 
-public suspend fun MailSender.send(block: MailMessageBuilder.() -> Unit) {
-    send(MailMessageBuilder().apply(block).build())
+public suspend fun MailSender.send(block: MailMessageBuilder.() -> Unit): List<Submission> {
+    return send(MailMessageBuilder().apply(block).build())
 }
 
 public class MailMessageBuilder internal constructor() {

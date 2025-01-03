@@ -10,7 +10,7 @@ public value class EmailAddress(public val email: String) {
 
     public companion object {
         private val emailRegex = Regex(
-            "^(?<user>[a-zA-Z0-9.%+-]+)(?:\\+(?<tag>[a-zA-Z0-9.%+-]+))?@(?<host>[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$"
+            "^(?<user>[a-zA-Z0-9.%+-]+)(?:\\+(?<tag>[a-zA-Z0-9.%+-]+))?@(?<host>[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})?)$"
         )
 
         public fun isValid(email: String): Boolean {

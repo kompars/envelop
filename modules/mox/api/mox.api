@@ -1,5 +1,6 @@
-public final class org/kompars/envelop/mox/ErrorException : java/lang/Throwable {
-	public fun <init> (Lorg/kompars/envelop/mox/model/Error;)V
+public final class org/kompars/envelop/mox/ErrorException : java/lang/Exception {
+	public fun <init> (ILorg/kompars/envelop/mox/model/Error;)V
+	public final fun getCode ()I
 	public final fun getError ()Lorg/kompars/envelop/mox/model/Error;
 }
 

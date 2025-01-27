@@ -36,7 +36,7 @@ public class MoxMailReceiver(
         return EmailPrincipal(name = name?.ifEmpty { null }, address = EmailAddress(address))
     }
 
-    private fun Structure.flatten(partPath: List<Int> = listOf(0)): List<Pair<List<Int>, Structure>> {
+    private fun Structure.flatten(partPath: List<Int> = listOf()): List<Pair<List<Int>, Structure>> {
         return listOf(partPath to this) + parts.flatMapIndexed { index, structure ->
             structure.flatten(partPath + index)
         }
@@ -45,8 +45,8 @@ public class MoxMailReceiver(
     private fun Structure.toMailFile(messageId: Int, partPath: List<Int>): MailFile {
         return MailFile(
             name = fileName.ifEmpty { null },
-            contentType = contentType,
-            contentId = contentId,
+            contentType = contentType.ifEmpty { null },
+            contentId = contentId.ifEmpty { null },
             contentProvider = MoxFileContentProvider(
                 moxApi = moxApi,
                 messageId = messageId,

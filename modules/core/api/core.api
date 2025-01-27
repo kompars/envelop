@@ -3,6 +3,22 @@ public final class org/kompars/envelop/ByteArrayContentProvider : org/kompars/en
 	public fun getContent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class org/kompars/envelop/Delivery {
+	public fun <init> (Ljava/lang/String;Lorg/kompars/envelop/DeliveryStatus;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/kompars/envelop/DeliveryStatus;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/kompars/envelop/DeliveryStatus;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lorg/kompars/envelop/DeliveryStatus;Ljava/lang/String;)Lorg/kompars/envelop/Delivery;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/Delivery;Ljava/lang/String;Lorg/kompars/envelop/DeliveryStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/Delivery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ljava/lang/String;
+	public final fun getStatus ()Lorg/kompars/envelop/DeliveryStatus;
+	public final fun getSubmissionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class org/kompars/envelop/DeliveryStatus : java/lang/Enum {
 	public static final field Delayed Lorg/kompars/envelop/DeliveryStatus;
 	public static final field Delivered Lorg/kompars/envelop/DeliveryStatus;
@@ -144,5 +160,18 @@ public abstract interface class org/kompars/envelop/MailReceiver {
 public abstract interface class org/kompars/envelop/MailSender {
 	public abstract fun onDelivery (Lkotlin/jvm/functions/Function2;)V
 	public abstract fun send (Lorg/kompars/envelop/MailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/Submission {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2-t0EBWXM ()Ljava/lang/String;
+	public final fun copy-n5PSg2o (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/Submission;
+	public static synthetic fun copy-n5PSg2o$default (Lorg/kompars/envelop/Submission;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/Submission;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getRecipient-t0EBWXM ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 

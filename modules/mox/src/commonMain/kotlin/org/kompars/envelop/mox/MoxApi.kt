@@ -13,7 +13,7 @@ import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 import org.kompars.envelop.mox.model.*
 
-public class ErrorException(public val error: Error) : Throwable()
+public class ErrorException(public val code: Int, public val error: Error) : Exception("$code: $error")
 
 public class MoxApi(baseUrl: String, email: String, password: String) {
     private val json = Json {
@@ -66,7 +66,7 @@ public class MoxApi(baseUrl: String, email: String, password: String) {
                 append(part.partType.key, part.content, headers {
                     part.contentType?.let { set("Content-Type", it.toString()) }
                     part.contentId?.let { set("Content-ID", it) }
-                    part.name?.let { set("Content-Disposition", "attachment; filename=$it") }
+                    part.name?.let { set("Content-Disposition", "filename=\"$it\"") }
                 })
             }
         }
@@ -86,7 +86,7 @@ public class MoxApi(baseUrl: String, email: String, password: String) {
 
         return when (response.status.isSuccess()) {
             true -> response.body()
-            false -> throw ErrorException(response.body<Error>())
+            false -> throw ErrorException(response.status.value, response.body<Error>())
         }
     }
 }

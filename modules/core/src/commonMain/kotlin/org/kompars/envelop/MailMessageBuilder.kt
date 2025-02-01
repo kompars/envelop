@@ -10,6 +10,7 @@ public class MailMessageBuilder internal constructor() {
     private val cc: MutableList<EmailPrincipal> = mutableListOf()
     private val bcc: MutableList<EmailPrincipal> = mutableListOf()
     private val headers: MutableMap<String, String> = mutableMapOf()
+    private val references: MutableList<String> = mutableListOf()
     private var subject: String? = null
     private var textBody: String? = null
     private var htmlBody: String? = null
@@ -80,6 +81,14 @@ public class MailMessageBuilder internal constructor() {
         bcc.add(EmailPrincipal(address = address))
     }
 
+    public fun references(id: String) {
+        references += id
+    }
+
+    public fun references(ids: List<String>) {
+        references += ids
+    }
+
     public fun header(name: String, value: String) {
         headers[name] = value
     }
@@ -125,6 +134,7 @@ public class MailMessageBuilder internal constructor() {
             to = to,
             cc = cc,
             bcc = bcc,
+            references = references,
             headers = headers,
             subject = subject,
             textBody = textBody,

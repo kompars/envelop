@@ -1,12 +1,20 @@
 package org.kompars.envelop
 
+import kotlinx.datetime.*
+
 public interface MailSender {
-    public suspend fun send(message: MailMessage): List<Submission>
+    public suspend fun send(message: MailMessage): EmailSent
     public fun onDelivery(block: suspend (Delivery) -> Unit)
 }
 
-public data class Submission(
+public data class EmailSent(
     val id: String,
+    val sentAt: Instant,
+    val submissions: List<Submission>,
+)
+
+public data class Submission(
+    val id: String?,
     val recipient: EmailAddress,
 )
 

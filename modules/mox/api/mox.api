@@ -72,7 +72,6 @@ public synthetic class org/kompars/envelop/mox/model/Error$$serializer : kotlinx
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Error;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/Error$Companion {
@@ -106,7 +105,6 @@ public synthetic class org/kompars/envelop/mox/model/File$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/File;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/File$Companion {
@@ -162,7 +160,6 @@ public synthetic class org/kompars/envelop/mox/model/Incoming$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Incoming;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/Incoming$Companion {
@@ -207,7 +204,6 @@ public synthetic class org/kompars/envelop/mox/model/IncomingMeta$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/IncomingMeta;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/IncomingMeta$Companion {
@@ -256,7 +252,6 @@ public synthetic class org/kompars/envelop/mox/model/Message$$serializer : kotli
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Message;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/Message$Companion {
@@ -283,7 +278,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageDeleteRequest$$seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageDeleteRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageDeleteRequest$Companion {
@@ -320,7 +314,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageFlagsAddRequest$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageFlagsAddRequest$Companion {
@@ -357,7 +350,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageFlagsRemoveRequest$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageFlagsRemoveRequest$Companion {
@@ -392,7 +384,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageGetRequest$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageGetRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageGetRequest$Companion {
@@ -423,7 +414,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageGetResult$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageGetResult;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageGetResult$Companion {
@@ -470,7 +460,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageMeta$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageMeta;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageMeta$Companion {
@@ -499,7 +488,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageMoveRequest$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageMoveRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageMoveRequest$Companion {
@@ -536,7 +524,6 @@ public synthetic class org/kompars/envelop/mox/model/MessagePartGetRequest$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessagePartGetRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessagePartGetRequest$Companion {
@@ -563,7 +550,6 @@ public synthetic class org/kompars/envelop/mox/model/MessageRawGetRequest$$seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/MessageRawGetRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/MessageRawGetRequest$Companion {
@@ -593,7 +579,6 @@ public synthetic class org/kompars/envelop/mox/model/NameAddress$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/NameAddress;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/NameAddress$Companion {
@@ -645,7 +630,6 @@ public synthetic class org/kompars/envelop/mox/model/Outgoing$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Outgoing;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/Outgoing$Companion {
@@ -730,7 +714,7 @@ public final class org/kompars/envelop/mox/model/SendRequest {
 	public final fun getHtml ()Ljava/lang/String;
 	public final fun getInlineFiles ()Ljava/util/List;
 	public final fun getMessageId ()Ljava/lang/String;
-	public final fun getReference ()Ljava/util/List;
+	public final fun getReferences ()Ljava/util/List;
 	public final fun getReplyTo ()Ljava/util/List;
 	public final fun getRequireTls ()Z
 	public final fun getSaveSent ()Z
@@ -749,7 +733,6 @@ public synthetic class org/kompars/envelop/mox/model/SendRequest$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/SendRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/SendRequest$Companion {
@@ -778,7 +761,6 @@ public synthetic class org/kompars/envelop/mox/model/SendResult$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/SendResult;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/SendResult$Companion {
@@ -818,7 +800,6 @@ public synthetic class org/kompars/envelop/mox/model/Structure$$serializer : kot
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Structure;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/Structure$Companion {
@@ -849,7 +830,6 @@ public synthetic class org/kompars/envelop/mox/model/Submission$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/mox/model/Submission;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/kompars/envelop/mox/model/Submission$Companion {

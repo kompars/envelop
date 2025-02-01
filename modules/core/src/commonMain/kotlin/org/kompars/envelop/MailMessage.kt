@@ -1,14 +1,19 @@
 package org.kompars.envelop
 
+import kotlinx.datetime.*
+
 public data class MailMessage(
+    val id: String? = null,
     val from: List<EmailPrincipal> = emptyList(),
     val to: List<EmailPrincipal> = emptyList(),
     val cc: List<EmailPrincipal> = emptyList(),
     val bcc: List<EmailPrincipal> = emptyList(),
+    val references: List<String> = emptyList(),
     val headers: Map<String, String> = emptyMap(),
-    val subject: String,
-    val textBody: String?,
-    val htmlBody: String?,
+    val subject: String? = null,
+    val textBody: String? = null,
+    val htmlBody: String? = null,
+    val sentAt: Instant? = null,
     val attachments: List<MailFile> = emptyList(),
     val inlineFiles: List<MailFile> = emptyList(),
 )

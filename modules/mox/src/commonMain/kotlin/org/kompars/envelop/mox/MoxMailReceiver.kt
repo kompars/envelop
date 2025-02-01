@@ -20,6 +20,8 @@ public class MoxMailReceiver(
                 subject = incoming.subject,
                 textBody = incoming.text?.ifEmpty { null },
                 htmlBody = incoming.html?.ifEmpty { null },
+                sentAt = incoming.meta.received,
+                references = incoming.references,
                 attachments = files
                     .filter { it.second.contentDisposition == "attachment" }
                     .map { it.second.toMailFile(incoming.meta.messageId, it.first) },

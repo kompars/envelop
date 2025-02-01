@@ -1,6 +1,7 @@
 package org.kompars.envelop.mox
 
 import io.ktor.http.*
+import kotlinx.datetime.*
 import org.kompars.envelop.*
 import org.kompars.envelop.Submission
 import org.kompars.envelop.mox.model.*
@@ -11,7 +12,7 @@ public class MoxMailSender(
     private val saveSent: Boolean = true,
     public val outgoingWebhooks: MoxOutgoingWebhooks = MoxOutgoingWebhooks(),
 ) : MailSender {
-    override suspend fun send(message: MailMessage): List<Submission> {
+    override suspend fun send(message: MailMessage): EmailSent {
         val sendRequest = SendRequest(
             from = message.from.map { it.toNameAddress() },
             to = message.to.map { it.toNameAddress() },
@@ -20,6 +21,7 @@ public class MoxMailSender(
             subject = message.subject,
             text = message.textBody,
             html = message.htmlBody,
+            references = message.references,
             headers = message.headers.map { (key, value) -> listOf(key, value) },
             requireTls = requireTls,
             saveSent = saveSent,
@@ -42,12 +44,18 @@ public class MoxMailSender(
             )
         }
 
-        return moxApi.messageSend(sendRequest, parts).submissions.map {
-            Submission(
-                id = it.queueMessageId.toString(),
-                recipient = EmailAddress(it.address),
-            )
-        }
+        val response = moxApi.messageSend(sendRequest, parts)
+
+        return EmailSent(
+            id = response.messageId,
+            sentAt = Clock.System.now(),
+            submissions = response.submissions.map {
+                Submission(
+                    id = it.queueMessageId.toString(),
+                    recipient = EmailAddress(it.address),
+                )
+            }
+        )
     }
 
     override fun onDelivery(block: suspend (Delivery) -> Unit) {

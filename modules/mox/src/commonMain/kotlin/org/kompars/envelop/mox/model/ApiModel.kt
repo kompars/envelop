@@ -226,7 +226,7 @@ public data class SendRequest(
     @SerialName("MessageID")
     val messageId: String? = null,
     @SerialName("References")
-    val reference: List<String> = emptyList(),
+    val references: List<String> = emptyList(),
     @SerialName("Date")
     val date: Instant? = null,
     @SerialName("Subject")

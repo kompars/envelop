@@ -1,6 +1,6 @@
 package org.kompars.envelop
 
-public suspend fun MailSender.send(block: MailMessageBuilder.() -> Unit): List<Submission> {
+public suspend fun MailSender.send(block: MailMessageBuilder.() -> Unit): EmailSent {
     return send(MailMessageBuilder().apply(block).build())
 }
 
@@ -119,7 +119,6 @@ public class MailMessageBuilder internal constructor() {
 
     internal fun build(): MailMessage {
         require(to.isNotEmpty() || cc.isNotEmpty() || bcc.isNotEmpty()) { "Receiver address can not be empty" }
-        require(subject != null) { "Subject can not be empty" }
 
         return MailMessage(
             from = from,
@@ -127,7 +126,7 @@ public class MailMessageBuilder internal constructor() {
             cc = cc,
             bcc = bcc,
             headers = headers,
-            subject = subject!!,
+            subject = subject,
             textBody = textBody,
             htmlBody = htmlBody,
             attachments = attachments,

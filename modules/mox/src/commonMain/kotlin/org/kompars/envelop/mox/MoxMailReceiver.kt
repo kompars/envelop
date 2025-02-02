@@ -13,6 +13,7 @@ public class MoxMailReceiver(
             val files = incoming.structure.flatten()
 
             val message = MailMessage(
+                id = incoming.messageId,
                 from = incoming.from.map { it.toEmailPrincipal() },
                 to = incoming.to.map { it.toEmailPrincipal() },
                 cc = incoming.cc.map { it.toEmailPrincipal() },

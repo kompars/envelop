@@ -29,47 +29,6 @@ public final class org/kompars/envelop/DeliveryStatus : java/lang/Enum {
 	public static fun values ()[Lorg/kompars/envelop/DeliveryStatus;
 }
 
-public final class org/kompars/envelop/EmailAddress {
-	public static final field Companion Lorg/kompars/envelop/EmailAddress$Companion;
-	public static final synthetic fun box-impl (Ljava/lang/String;)Lorg/kompars/envelop/EmailAddress;
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
-	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
-	public final fun getEmail ()Ljava/lang/String;
-	public static final fun getHost-impl (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun getTag-impl (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun getUser-impl (Ljava/lang/String;)Ljava/lang/String;
-	public fun hashCode ()I
-	public static fun hashCode-impl (Ljava/lang/String;)I
-	public fun toString ()Ljava/lang/String;
-	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
-	public final synthetic fun unbox-impl ()Ljava/lang/String;
-}
-
-public final class org/kompars/envelop/EmailAddress$Companion {
-	public final fun isValid (Ljava/lang/String;)Z
-}
-
-public final class org/kompars/envelop/EmailPrincipal {
-	public static final field Companion Lorg/kompars/envelop/EmailPrincipal$Companion;
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2-t0EBWXM ()Ljava/lang/String;
-	public final fun copy-n5PSg2o (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/EmailPrincipal;
-	public static synthetic fun copy-n5PSg2o$default (Lorg/kompars/envelop/EmailPrincipal;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/EmailPrincipal;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAddress-t0EBWXM ()Ljava/lang/String;
-	public final fun getName ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class org/kompars/envelop/EmailPrincipal$Companion {
-	public final fun parse (Ljava/lang/String;)Lorg/kompars/envelop/EmailPrincipal;
-}
-
 public final class org/kompars/envelop/EmailSent {
 	public fun <init> (Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
@@ -147,28 +106,18 @@ public final class org/kompars/envelop/MailMessage {
 public final class org/kompars/envelop/MailMessageBuilder {
 	public final fun attachment (Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;)V
 	public static synthetic fun attachment$default (Lorg/kompars/envelop/MailMessageBuilder;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;ILjava/lang/Object;)V
-	public final fun bcc (Ljava/lang/String;)V
-	public final fun bcc (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun bcc (Lorg/kompars/envelop/EmailPrincipal;)V
-	public final fun bcc-ydqZrMw (Ljava/lang/String;)V
-	public final fun cc (Ljava/lang/String;)V
-	public final fun cc (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun cc (Lorg/kompars/envelop/EmailPrincipal;)V
-	public final fun cc-ydqZrMw (Ljava/lang/String;)V
-	public final fun from (Ljava/lang/String;)V
-	public final fun from (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun from (Lorg/kompars/envelop/EmailPrincipal;)V
-	public final fun from-ydqZrMw (Ljava/lang/String;)V
+	public final fun bcc (Lorg/kompars/envelop/common/EmailAddress;)V
+	public final fun cc (Lorg/kompars/envelop/common/EmailAddress;)V
+	public final fun from (Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun header (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun htmlBody (Ljava/lang/String;)V
 	public final fun inlineFile (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;)V
 	public static synthetic fun inlineFile$default (Lorg/kompars/envelop/MailMessageBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;ILjava/lang/Object;)V
+	public final fun references (Ljava/lang/String;)V
+	public final fun references (Ljava/util/List;)V
 	public final fun subject (Ljava/lang/String;)V
 	public final fun textBody (Ljava/lang/String;)V
-	public final fun to (Ljava/lang/String;)V
-	public final fun to (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun to (Lorg/kompars/envelop/EmailPrincipal;)V
-	public final fun to-ydqZrMw (Ljava/lang/String;)V
+	public final fun to (Lorg/kompars/envelop/common/EmailAddress;)V
 }
 
 public final class org/kompars/envelop/MailMessageBuilderKt {
@@ -185,14 +134,14 @@ public abstract interface class org/kompars/envelop/MailSender {
 }
 
 public final class org/kompars/envelop/Submission {
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2-t0EBWXM ()Ljava/lang/String;
-	public final fun copy-n5PSg2o (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/Submission;
-	public static synthetic fun copy-n5PSg2o$default (Lorg/kompars/envelop/Submission;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/Submission;
+	public final fun component2 ()Lorg/kompars/envelop/common/EmailAddress;
+	public final fun copy (Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;)Lorg/kompars/envelop/Submission;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/Submission;Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;ILjava/lang/Object;)Lorg/kompars/envelop/Submission;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getId ()Ljava/lang/String;
-	public final fun getRecipient-t0EBWXM ()Ljava/lang/String;
+	public final fun getRecipient ()Lorg/kompars/envelop/common/EmailAddress;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }

@@ -6,7 +6,9 @@ plugins {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
+include("modules:common")
 include("modules:core")
 include("modules:kotlinx-html")
 include("modules:mox")
 include("modules:mox-ktor")
+include("modules:serialization")

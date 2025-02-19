@@ -9,13 +9,13 @@ import io.ktor.client.request.forms.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.*
-import kotlinx.serialization.*
 import kotlinx.serialization.json.*
+import org.kompars.envelop.common.*
 import org.kompars.envelop.mox.model.*
 
 public class ErrorException(public val code: Int, public val error: Error) : Exception("$code: $error")
 
-public class MoxApi(baseUrl: String, email: String, password: String) {
+public class MoxApi(baseUrl: Url, email: EmailAddress, password: String) {
     private val json = Json {
         ignoreUnknownKeys = true
         explicitNulls = false
@@ -27,8 +27,10 @@ public class MoxApi(baseUrl: String, email: String, password: String) {
             json(json)
         }
         defaultRequest {
-            url(baseUrl)
-            basicAuth(email, password)
+            basicAuth(email.withIdentifier(null).toString(), password)
+            url {
+                takeFrom(baseUrl)
+            }
         }
     }
 

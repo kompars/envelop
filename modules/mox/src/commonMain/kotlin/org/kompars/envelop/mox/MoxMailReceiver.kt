@@ -2,6 +2,7 @@ package org.kompars.envelop.mox
 
 import io.ktor.utils.io.*
 import org.kompars.envelop.*
+import org.kompars.envelop.common.*
 import org.kompars.envelop.mox.model.*
 
 public class MoxMailReceiver(
@@ -14,10 +15,10 @@ public class MoxMailReceiver(
 
             val message = MailMessage(
                 id = incoming.messageId,
-                from = incoming.from.map { it.toEmailPrincipal() },
-                to = incoming.to.map { it.toEmailPrincipal() },
-                cc = incoming.cc.map { it.toEmailPrincipal() },
-                bcc = incoming.bcc.map { it.toEmailPrincipal() },
+                from = incoming.from.map { it.toEmailAddress() },
+                to = incoming.to.map { it.toEmailAddress() },
+                cc = incoming.cc.map { it.toEmailAddress() },
+                bcc = incoming.bcc.map { it.toEmailAddress() },
                 subject = incoming.subject,
                 textBody = incoming.text?.ifEmpty { null },
                 htmlBody = incoming.html?.ifEmpty { null },
@@ -35,8 +36,8 @@ public class MoxMailReceiver(
         }
     }
 
-    private fun NameAddress.toEmailPrincipal(): EmailPrincipal {
-        return EmailPrincipal(name = name?.ifEmpty { null }, address = EmailAddress(address))
+    private fun NameAddress.toEmailAddress(): EmailAddress {
+        return EmailAddress.parse(address).withIdentifier(name?.ifEmpty { null })
     }
 
     private fun Structure.flatten(partPath: List<Int> = listOf()): List<Pair<List<Int>, Structure>> {

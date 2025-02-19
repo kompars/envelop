@@ -1,6 +1,7 @@
 package org.kompars.envelop
 
 import kotlinx.datetime.*
+import org.kompars.envelop.common.*
 
 public interface MailSender {
     public suspend fun send(message: MailMessage): EmailSent

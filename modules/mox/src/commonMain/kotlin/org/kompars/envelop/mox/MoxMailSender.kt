@@ -4,6 +4,7 @@ import io.ktor.http.*
 import kotlinx.datetime.*
 import org.kompars.envelop.*
 import org.kompars.envelop.Submission
+import org.kompars.envelop.common.*
 import org.kompars.envelop.mox.model.*
 
 public class MoxMailSender(
@@ -47,15 +48,12 @@ public class MoxMailSender(
         val response = moxApi.messageSend(sendRequest, parts)
 
         return EmailSent(
-            id = response.messageId,
-            sentAt = Clock.System.now(),
-            submissions = response.submissions.map {
+            id = response.messageId, sentAt = Clock.System.now(), submissions = response.submissions.map {
                 Submission(
                     id = it.queueMessageId.toString(),
-                    recipient = EmailAddress(it.address),
+                    recipient = EmailAddress.parse(it.address),
                 )
-            }
-        )
+            })
     }
 
     override fun onDelivery(block: suspend (Delivery) -> Unit) {
@@ -75,7 +73,7 @@ public class MoxMailSender(
         }
     }
 
-    private fun EmailPrincipal.toNameAddress(): NameAddress {
-        return NameAddress(name = name, address = address.toString())
+    private fun EmailAddress.toNameAddress(): NameAddress {
+        return NameAddress(name = identifier, address = withIdentifier(null).toString())
     }
 }

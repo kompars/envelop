@@ -1,14 +1,16 @@
 package org.kompars.envelop
 
+import org.kompars.envelop.common.*
+
 public suspend fun MailSender.send(block: MailMessageBuilder.() -> Unit): EmailSent {
     return send(MailMessageBuilder().apply(block).build())
 }
 
 public class MailMessageBuilder internal constructor() {
-    private val from: MutableList<EmailPrincipal> = mutableListOf()
-    private val to: MutableList<EmailPrincipal> = mutableListOf()
-    private val cc: MutableList<EmailPrincipal> = mutableListOf()
-    private val bcc: MutableList<EmailPrincipal> = mutableListOf()
+    private val from: MutableList<EmailAddress> = mutableListOf()
+    private val to: MutableList<EmailAddress> = mutableListOf()
+    private val cc: MutableList<EmailAddress> = mutableListOf()
+    private val bcc: MutableList<EmailAddress> = mutableListOf()
     private val headers: MutableMap<String, String> = mutableMapOf()
     private val references: MutableList<String> = mutableListOf()
     private var subject: String? = null
@@ -17,68 +19,20 @@ public class MailMessageBuilder internal constructor() {
     private val attachments: MutableList<MailFile> = mutableListOf()
     private val inlineFiles: MutableList<MailFile> = mutableListOf()
 
-    public fun from(principal: EmailPrincipal) {
-        from.add(principal)
-    }
-
-    public fun from(name: String, address: String) {
-        from.add(EmailPrincipal(name, EmailAddress(address)))
-    }
-
-    public fun from(address: String) {
-        from.add(EmailPrincipal(address = EmailAddress(address)))
-    }
-
     public fun from(address: EmailAddress) {
-        from.add(EmailPrincipal(address = address))
-    }
-
-    public fun to(principal: EmailPrincipal) {
-        to.add(principal)
-    }
-
-    public fun to(name: String, address: String) {
-        to.add(EmailPrincipal(name, EmailAddress(address)))
-    }
-
-    public fun to(address: String) {
-        to.add(EmailPrincipal(address = EmailAddress(address)))
+        from.add(address)
     }
 
     public fun to(address: EmailAddress) {
-        to.add(EmailPrincipal(address = address))
-    }
-
-    public fun cc(principal: EmailPrincipal) {
-        cc.add(principal)
-    }
-
-    public fun cc(name: String, address: String) {
-        cc.add(EmailPrincipal(name, EmailAddress(address)))
-    }
-
-    public fun cc(address: String) {
-        cc.add(EmailPrincipal(address = EmailAddress(address)))
+        to.add(address)
     }
 
     public fun cc(address: EmailAddress) {
-        cc.add(EmailPrincipal(address = address))
-    }
-
-    public fun bcc(principal: EmailPrincipal) {
-        bcc.add(principal)
-    }
-
-    public fun bcc(name: String, address: String) {
-        bcc.add(EmailPrincipal(name, EmailAddress(address)))
-    }
-
-    public fun bcc(address: String) {
-        bcc.add(EmailPrincipal(address = EmailAddress(address)))
+        cc.add(address)
     }
 
     public fun bcc(address: EmailAddress) {
-        bcc.add(EmailPrincipal(address = address))
+        bcc.add(address)
     }
 
     public fun references(id: String) {

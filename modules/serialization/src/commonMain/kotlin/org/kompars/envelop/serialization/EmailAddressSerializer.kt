@@ -1,0 +1,20 @@
+package org.kompars.envelop.serialization
+
+import kotlinx.serialization.*
+import kotlinx.serialization.descriptors.*
+import kotlinx.serialization.encoding.*
+import org.kompars.envelop.common.*
+
+public typealias SerializableEmailAddress = @Serializable(with = EmailAddressSerializer::class) EmailAddress
+
+public object EmailAddressSerializer : KSerializer<EmailAddress> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("org.kompars.envelop.common.EmailAddress", PrimitiveKind.STRING)
+
+    override fun serialize(encoder: Encoder, value: EmailAddress) {
+        encoder.encodeString(value.toString())
+    }
+
+    override fun deserialize(decoder: Decoder): EmailAddress {
+        return EmailAddress.parse(decoder.decodeString())
+    }
+}

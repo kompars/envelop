@@ -1,6 +1,7 @@
 package org.kompars.envelop.mox
 
 import io.ktor.utils.io.*
+import kotlinx.datetime.*
 import org.kompars.envelop.*
 import org.kompars.envelop.mox.model.*
 
@@ -8,7 +9,7 @@ public class MoxEmailReceiver(
     private val moxApi: MoxApi,
     public val incomingWebhooks: MoxIncomingWebhooks = MoxIncomingWebhooks(),
 ) : EmailReceiver {
-    override fun onMessage(block: suspend (EmailMessage) -> Unit) {
+    override fun onMessage(block: suspend (EmailMessage, Instant) -> Unit) {
         incomingWebhooks.registerCallback { incoming ->
             val files = incoming.structure.flatten()
 
@@ -21,18 +22,18 @@ public class MoxEmailReceiver(
 
             val message = EmailMessage(
                 id = incoming.messageId,
+                references = incoming.references,
                 recipients = recipients,
+                date = incoming.date,
                 subject = incoming.subject,
                 textBody = incoming.text?.ifEmpty { null },
                 htmlBody = incoming.html?.ifEmpty { null },
-                sentAt = incoming.meta.received,
-                references = incoming.references,
                 attachments = files.map { (partPath, structure) ->
                     structure.toEmailAttachment(incoming.meta.messageId, partPath, structure.contentDisposition)
                 },
             )
 
-            block(message)
+            block(message, incoming.meta.received)
         }
     }
 

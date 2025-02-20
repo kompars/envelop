@@ -1,0 +1,6 @@
+public final class org/kompars/envelop/parser/EmailMessageParserKt {
+	public static final fun fromEml (Lorg/kompars/envelop/EmailMessage$Companion;[B)Lorg/kompars/envelop/EmailMessage;
+	public static final fun fromMimeMessage (Lorg/kompars/envelop/EmailMessage$Companion;Ljakarta/mail/internet/MimeMessage;)Lorg/kompars/envelop/EmailMessage;
+	public static final fun fromMsg (Lorg/kompars/envelop/EmailMessage$Companion;[B)Lorg/kompars/envelop/EmailMessage;
+}
+

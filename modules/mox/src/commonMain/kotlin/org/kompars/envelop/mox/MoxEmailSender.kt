@@ -20,6 +20,7 @@ public class MoxEmailSender(
             to = message.recipients.toNameAddresses(EmailRecipientType.To),
             cc = message.recipients.toNameAddresses(EmailRecipientType.Cc),
             bcc = message.recipients.toNameAddresses(EmailRecipientType.Bcc),
+            date = message.date,
             subject = message.subject,
             text = message.textBody,
             html = message.htmlBody,
@@ -75,7 +76,7 @@ public class MoxEmailSender(
 
     private fun List<EmailRecipient>.toNameAddresses(type: EmailRecipientType): List<NameAddress> {
         return filter { it.type == type }.map {
-            NameAddress(name = it.emailAddress.identifier, address = it.emailAddress.withIdentifier(null))
+            NameAddress(name = it.address.identifier, address = it.address.withIdentifier(null))
         }
     }
 }

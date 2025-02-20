@@ -25,7 +25,7 @@ public final class org/kompars/envelop/mox/MoxEmailReceiver : org/kompars/envelo
 	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;)V
 	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIncomingWebhooks ()Lorg/kompars/envelop/mox/MoxIncomingWebhooks;
-	public fun onMessage (Lkotlin/jvm/functions/Function2;)V
+	public fun onMessage (Lkotlin/jvm/functions/Function3;)V
 }
 
 public final class org/kompars/envelop/mox/MoxEmailSender : org/kompars/envelop/EmailSender {

@@ -9,7 +9,7 @@ public interface EmailSender {
 }
 
 public suspend fun EmailSender.send(block: EmailMessageBuilder.() -> Unit): EmailSent {
-    return send(EmailMessageBuilder().apply(block).build())
+    return send(EmailMessage.build(block))
 }
 
 public data class EmailSent(

@@ -1,13 +1,11 @@
 package org.kompars.envelop
 
+import kotlinx.datetime.*
 import org.kompars.envelop.common.*
-
-public fun buildEmailMessage(block: EmailMessageBuilder.() -> Unit): EmailMessage {
-    return EmailMessageBuilder().apply(block).build()
-}
 
 public class EmailMessageBuilder internal constructor() {
     private var id: EmailMessageId? = null
+    private var date: Instant? = null
     private val recipients: MutableList<EmailRecipient> = mutableListOf()
     private val headers: MutableMap<String, String> = mutableMapOf()
     private val references: MutableList<EmailMessageId> = mutableListOf()
@@ -15,14 +13,17 @@ public class EmailMessageBuilder internal constructor() {
     private var textBody: String? = null
     private var htmlBody: String? = null
     private val attachments: MutableList<EmailAttachment> = mutableListOf()
-    private val inlineFiles: MutableList<EmailAttachment> = mutableListOf()
 
     public fun id(id: EmailMessageId) {
         this.id = id
     }
 
+    public fun date(date: Instant) {
+        this.date = date
+    }
+
     public fun recipient(type: EmailRecipientType, address: EmailAddress) {
-        recipients.add(EmailRecipient(EmailRecipientType.From, address))
+        recipients += EmailRecipient(type, address)
     }
 
     public fun from(address: EmailAddress) {

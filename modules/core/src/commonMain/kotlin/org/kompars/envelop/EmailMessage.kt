@@ -8,12 +8,18 @@ public data class EmailMessage(
     val references: List<EmailMessageId> = emptyList(),
     val recipients: List<EmailRecipient> = emptyList(),
     val headers: Map<String, String> = emptyMap(),
+    val date: Instant? = null,
     val subject: String? = null,
     val textBody: String? = null,
     val htmlBody: String? = null,
     val attachments: List<EmailAttachment> = emptyList(),
-    val sentAt: Instant? = null,
-)
+) {
+    public companion object {
+        public fun build(block: EmailMessageBuilder.() -> Unit): EmailMessage {
+            return EmailMessageBuilder().apply(block).build()
+        }
+    }
+}
 
 public enum class EmailRecipientType {
     From,
@@ -25,7 +31,7 @@ public enum class EmailRecipientType {
 
 public data class EmailRecipient(
     val type: EmailRecipientType,
-    val emailAddress: EmailAddress,
+    val address: EmailAddress,
 )
 
 public enum class EmailAttachmentType {

@@ -3,13 +3,17 @@ package org.kompars.envelop
 import kotlinx.datetime.*
 import org.kompars.envelop.common.*
 
-public interface MailSender {
-    public suspend fun send(message: MailMessage): EmailSent
+public interface EmailSender {
+    public suspend fun send(message: EmailMessage): EmailSent
     public fun onDelivery(block: suspend (Delivery) -> Unit)
 }
 
+public suspend fun EmailSender.send(block: EmailMessageBuilder.() -> Unit): EmailSent {
+    return send(EmailMessageBuilder().apply(block).build())
+}
+
 public data class EmailSent(
-    val id: String,
+    val id: EmailMessageId,
     val sentAt: Instant,
     val submissions: List<Submission>,
 )

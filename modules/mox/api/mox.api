@@ -1,11 +1,11 @@
-public final class org/kompars/envelop/mox/ErrorException : java/lang/Exception {
+public final class org/kompars/envelop/mox/ErrorException : java/lang/RuntimeException {
 	public fun <init> (ILorg/kompars/envelop/mox/model/Error;)V
 	public final fun getCode ()I
 	public final fun getError ()Lorg/kompars/envelop/mox/model/Error;
 }
 
 public final class org/kompars/envelop/mox/MoxApi {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Lio/ktor/http/Url;Lorg/kompars/envelop/common/EmailAddress;Ljava/lang/String;)V
 	public final fun messageDelete (Lorg/kompars/envelop/mox/model/MessageDeleteRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun messageFlagsAdd (Lorg/kompars/envelop/mox/model/MessageFlagsAddRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun messageFlagsRemove (Lorg/kompars/envelop/mox/model/MessageFlagsRemoveRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -17,27 +17,27 @@ public final class org/kompars/envelop/mox/MoxApi {
 	public static synthetic fun messageSend$default (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class org/kompars/envelop/mox/MoxFileContentProvider : org/kompars/envelop/MailFileContentProvider {
+public final class org/kompars/envelop/mox/MoxContentProvider : org/kompars/envelop/EmailAttachmentContentProvider {
 	public fun getContent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class org/kompars/envelop/mox/MoxIncomingWebhooks : org/kompars/envelop/mox/MoxWebhooks {
-	public fun <init> ()V
-}
-
-public final class org/kompars/envelop/mox/MoxMailReceiver : org/kompars/envelop/MailReceiver {
+public final class org/kompars/envelop/mox/MoxEmailReceiver : org/kompars/envelop/EmailReceiver {
 	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;)V
 	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIncomingWebhooks ()Lorg/kompars/envelop/mox/MoxIncomingWebhooks;
 	public fun onMessage (Lkotlin/jvm/functions/Function2;)V
 }
 
-public final class org/kompars/envelop/mox/MoxMailSender : org/kompars/envelop/MailSender {
+public final class org/kompars/envelop/mox/MoxEmailSender : org/kompars/envelop/EmailSender {
 	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;ZZLorg/kompars/envelop/mox/MoxOutgoingWebhooks;)V
 	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;ZZLorg/kompars/envelop/mox/MoxOutgoingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getOutgoingWebhooks ()Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;
 	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
-	public fun send (Lorg/kompars/envelop/MailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun send (Lorg/kompars/envelop/EmailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/mox/MoxIncomingWebhooks : org/kompars/envelop/mox/MoxWebhooks {
+	public fun <init> ()V
 }
 
 public final class org/kompars/envelop/mox/MoxOutgoingWebhooks : org/kompars/envelop/mox/MoxWebhooks {
@@ -113,8 +113,8 @@ public final class org/kompars/envelop/mox/model/File$Companion {
 
 public final class org/kompars/envelop/mox/model/Incoming {
 	public static final field Companion Lorg/kompars/envelop/mox/model/Incoming$Companion;
-	public fun <init> (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;)V
 	public synthetic fun <init> (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()I
 	public final fun component10 ()Ljava/util/List;
 	public final fun component11 ()Lkotlinx/datetime/Instant;
@@ -128,18 +128,18 @@ public final class org/kompars/envelop/mox/model/Incoming {
 	public final fun component5 ()Ljava/util/List;
 	public final fun component6 ()Ljava/util/List;
 	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;)Lorg/kompars/envelop/mox/model/Incoming;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Incoming;ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Incoming;
+	public final fun component8-YZH9JHE ()Ljava/lang/String;
+	public final fun component9-k64KbRI ()Ljava/lang/String;
+	public final fun copy-B-xSIzY (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;)Lorg/kompars/envelop/mox/model/Incoming;
+	public static synthetic fun copy-B-xSIzY$default (Lorg/kompars/envelop/mox/model/Incoming;ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/mox/model/Structure;Lorg/kompars/envelop/mox/model/IncomingMeta;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Incoming;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBcc ()Ljava/util/List;
 	public final fun getCc ()Ljava/util/List;
 	public final fun getDate ()Lkotlinx/datetime/Instant;
 	public final fun getFrom ()Ljava/util/List;
 	public final fun getHtml ()Ljava/lang/String;
-	public final fun getInReplyTo ()Ljava/lang/String;
-	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getInReplyTo-k64KbRI ()Ljava/lang/String;
+	public final fun getMessageId-YZH9JHE ()Ljava/lang/String;
 	public final fun getMeta ()Lorg/kompars/envelop/mox/model/IncomingMeta;
 	public final fun getReferences ()Ljava/util/List;
 	public final fun getReplyTo ()Ljava/util/List;
@@ -168,28 +168,28 @@ public final class org/kompars/envelop/mox/model/Incoming$Companion {
 
 public final class org/kompars/envelop/mox/model/IncomingMeta {
 	public static final field Companion Lorg/kompars/envelop/mox/model/IncomingMeta$Companion;
-	public fun <init> (ILjava/lang/String;ZZLjava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;Z)V
+	public fun <init> (ILorg/kompars/envelop/common/EmailAddress;ZZLorg/kompars/envelop/common/EmailAddress;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;Z)V
 	public final fun component1 ()I
 	public final fun component10 ()Z
-	public final fun component2 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun component3 ()Z
 	public final fun component4 ()Z
-	public final fun component5 ()Ljava/lang/String;
+	public final fun component5 ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun component6 ()Ljava/util/List;
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Lkotlinx/datetime/Instant;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (ILjava/lang/String;ZZLjava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;Z)Lorg/kompars/envelop/mox/model/IncomingMeta;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/IncomingMeta;ILjava/lang/String;ZZLjava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;ZILjava/lang/Object;)Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public final fun copy (ILorg/kompars/envelop/common/EmailAddress;ZZLorg/kompars/envelop/common/EmailAddress;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;Z)Lorg/kompars/envelop/mox/model/IncomingMeta;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/IncomingMeta;ILorg/kompars/envelop/common/EmailAddress;ZZLorg/kompars/envelop/common/EmailAddress;Ljava/util/List;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/String;ZILjava/lang/Object;)Lorg/kompars/envelop/mox/model/IncomingMeta;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAutomated ()Z
 	public final fun getDkimVerifiedDomains ()Ljava/util/List;
-	public final fun getMailFrom ()Ljava/lang/String;
+	public final fun getMailFrom ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun getMailFromValidated ()Z
 	public final fun getMailboxName ()Ljava/lang/String;
 	public final fun getMessageId ()I
 	public final fun getMsgFromValidated ()Z
-	public final fun getRcptTo ()Ljava/lang/String;
+	public final fun getRcptTo ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun getReceived ()Lkotlinx/datetime/Instant;
 	public final fun getRemoteIp ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -212,9 +212,8 @@ public final class org/kompars/envelop/mox/model/IncomingMeta$Companion {
 
 public final class org/kompars/envelop/mox/model/Message {
 	public static final field Companion Lorg/kompars/envelop/mox/model/Message$Companion;
-	public fun <init> ()V
-	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/List;
 	public final fun component10 ()Ljava/lang/String;
 	public final fun component11 ()Ljava/lang/String;
@@ -222,19 +221,19 @@ public final class org/kompars/envelop/mox/model/Message {
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()Ljava/util/List;
 	public final fun component5 ()Ljava/util/List;
-	public final fun component6 ()Ljava/lang/String;
+	public final fun component6-k64KbRI ()Ljava/lang/String;
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Lkotlinx/datetime/Instant;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/Message;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Message;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Message;
+	public final fun copy-7ouszpA (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/Message;
+	public static synthetic fun copy-7ouszpA$default (Lorg/kompars/envelop/mox/model/Message;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Message;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBcc ()Ljava/util/List;
 	public final fun getCc ()Ljava/util/List;
 	public final fun getDate ()Lkotlinx/datetime/Instant;
 	public final fun getFrom ()Ljava/util/List;
 	public final fun getHtml ()Ljava/lang/String;
-	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getMessageId-k64KbRI ()Ljava/lang/String;
 	public final fun getReference ()Ljava/util/List;
 	public final fun getReplyTo ()Ljava/util/List;
 	public final fun getSubject ()Ljava/lang/String;
@@ -422,28 +421,28 @@ public final class org/kompars/envelop/mox/model/MessageGetResult$Companion {
 
 public final class org/kompars/envelop/mox/model/MessageMeta {
 	public static final field Companion Lorg/kompars/envelop/mox/model/MessageMeta$Companion;
-	public fun <init> (IZLjava/util/List;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (IZLjava/util/List;Lorg/kompars/envelop/common/EmailAddress;ZLjava/lang/String;Lorg/kompars/envelop/common/EmailAddress;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;)V
 	public final fun component1 ()I
 	public final fun component10 ()Ljava/lang/String;
 	public final fun component11 ()Ljava/lang/String;
 	public final fun component2 ()Z
 	public final fun component3 ()Ljava/util/List;
-	public final fun component4 ()Ljava/lang/String;
+	public final fun component4 ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun component5 ()Z
 	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
+	public final fun component7 ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun component8 ()Z
 	public final fun component9 ()Ljava/util/List;
-	public final fun copy (IZLjava/util/List;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/MessageMeta;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageMeta;IZLjava/util/List;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageMeta;
+	public final fun copy (IZLjava/util/List;Lorg/kompars/envelop/common/EmailAddress;ZLjava/lang/String;Lorg/kompars/envelop/common/EmailAddress;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/MessageMeta;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/MessageMeta;IZLjava/util/List;Lorg/kompars/envelop/common/EmailAddress;ZLjava/lang/String;Lorg/kompars/envelop/common/EmailAddress;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/MessageMeta;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDkimVerifiedDomains ()Ljava/util/List;
 	public final fun getDsn ()Z
 	public final fun getFlags ()Ljava/util/List;
-	public final fun getMailFrom ()Ljava/lang/String;
+	public final fun getMailFrom ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun getMailFromValidated ()Z
 	public final fun getMailboxName ()Ljava/lang/String;
-	public final fun getMsgFrom ()Ljava/lang/String;
+	public final fun getMsgFrom ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun getMsgFromValidated ()Z
 	public final fun getRcptTo ()Ljava/lang/String;
 	public final fun getRemoteIp ()Ljava/lang/String;
@@ -558,14 +557,14 @@ public final class org/kompars/envelop/mox/model/MessageRawGetRequest$Companion 
 
 public final class org/kompars/envelop/mox/model/NameAddress {
 	public static final field Companion Lorg/kompars/envelop/mox/model/NameAddress$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/mox/model/NameAddress;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/NameAddress;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/NameAddress;
+	public final fun component2 ()Lorg/kompars/envelop/common/EmailAddress;
+	public final fun copy (Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;)Lorg/kompars/envelop/mox/model/NameAddress;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/NameAddress;Ljava/lang/String;Lorg/kompars/envelop/common/EmailAddress;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/NameAddress;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAddress ()Ljava/lang/String;
+	public final fun getAddress ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -587,8 +586,8 @@ public final class org/kompars/envelop/mox/model/NameAddress$Companion {
 
 public final class org/kompars/envelop/mox/model/Outgoing {
 	public static final field Companion Lorg/kompars/envelop/mox/model/Outgoing$Companion;
-	public fun <init> (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 	public synthetic fun <init> (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()I
 	public final fun component10 ()Ljava/lang/Integer;
 	public final fun component11 ()Ljava/lang/String;
@@ -599,18 +598,18 @@ public final class org/kompars/envelop/mox/model/Outgoing {
 	public final fun component4 ()Z
 	public final fun component5 ()I
 	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
+	public final fun component7-YZH9JHE ()Ljava/lang/String;
 	public final fun component8 ()Ljava/lang/String;
 	public final fun component9 ()Lkotlinx/datetime/Instant;
-	public final fun copy (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lorg/kompars/envelop/mox/model/Outgoing;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Outgoing;ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Outgoing;
+	public final fun copy-3ad8ERs (ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lorg/kompars/envelop/mox/model/Outgoing;
+	public static synthetic fun copy-3ad8ERs$default (Lorg/kompars/envelop/mox/model/Outgoing;ILorg/kompars/envelop/mox/model/OutgoingEvent;ZZILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Outgoing;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDsn ()Z
 	public final fun getError ()Ljava/lang/String;
 	public final fun getEvent ()Lorg/kompars/envelop/mox/model/OutgoingEvent;
 	public final fun getExtra ()Ljava/util/Map;
 	public final fun getFromId ()Ljava/lang/String;
-	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getMessageId-YZH9JHE ()Ljava/lang/String;
 	public final fun getQueueMessageId ()I
 	public final fun getSmtpCode ()Ljava/lang/Integer;
 	public final fun getSmtpEnhancedCode ()Ljava/lang/String;
@@ -677,9 +676,8 @@ public final class org/kompars/envelop/mox/model/PartType : java/lang/Enum {
 
 public final class org/kompars/envelop/mox/model/SendRequest {
 	public static final field Companion Lorg/kompars/envelop/mox/model/SendRequest$Companion;
-	public fun <init> ()V
-	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;Z)V
 	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;ZLkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/List;
 	public final fun component10 ()Ljava/lang/String;
 	public final fun component11 ()Ljava/lang/String;
@@ -695,12 +693,12 @@ public final class org/kompars/envelop/mox/model/SendRequest {
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()Ljava/util/List;
 	public final fun component5 ()Ljava/util/List;
-	public final fun component6 ()Ljava/lang/String;
+	public final fun component6-k64KbRI ()Ljava/lang/String;
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Lkotlinx/datetime/Instant;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;Z)Lorg/kompars/envelop/mox/model/SendRequest;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;ZILjava/lang/Object;)Lorg/kompars/envelop/mox/model/SendRequest;
+	public final fun copy-OjIwaRg (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;Z)Lorg/kompars/envelop/mox/model/SendRequest;
+	public static synthetic fun copy-OjIwaRg$default (Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ZLkotlinx/datetime/Instant;ZILjava/lang/Object;)Lorg/kompars/envelop/mox/model/SendRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlternativeFiles ()Ljava/util/List;
 	public final fun getAttachedFiles ()Ljava/util/List;
@@ -713,7 +711,7 @@ public final class org/kompars/envelop/mox/model/SendRequest {
 	public final fun getHeaders ()Ljava/util/List;
 	public final fun getHtml ()Ljava/lang/String;
 	public final fun getInlineFiles ()Ljava/util/List;
-	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getMessageId-k64KbRI ()Ljava/lang/String;
 	public final fun getReferences ()Ljava/util/List;
 	public final fun getReplyTo ()Ljava/util/List;
 	public final fun getRequireTls ()Z
@@ -741,13 +739,13 @@ public final class org/kompars/envelop/mox/model/SendRequest$Companion {
 
 public final class org/kompars/envelop/mox/model/SendResult {
 	public static final field Companion Lorg/kompars/envelop/mox/model/SendResult$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
-	public final fun component1 ()Ljava/lang/String;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-YZH9JHE ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lorg/kompars/envelop/mox/model/SendResult;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/SendResult;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/SendResult;
+	public final fun copy-3eXdpOE (Ljava/lang/String;Ljava/util/List;)Lorg/kompars/envelop/mox/model/SendResult;
+	public static synthetic fun copy-3eXdpOE$default (Lorg/kompars/envelop/mox/model/SendResult;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/SendResult;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getMessageId ()Ljava/lang/String;
+	public final fun getMessageId-YZH9JHE ()Ljava/lang/String;
 	public final fun getSubmissions ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -808,14 +806,14 @@ public final class org/kompars/envelop/mox/model/Structure$Companion {
 
 public final class org/kompars/envelop/mox/model/Submission {
 	public static final field Companion Lorg/kompars/envelop/mox/model/Submission$Companion;
-	public fun <init> (Ljava/lang/String;ILjava/lang/String;)V
-	public final fun component1 ()Ljava/lang/String;
+	public fun <init> (Lorg/kompars/envelop/common/EmailAddress;ILjava/lang/String;)V
+	public final fun component1 ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun component2 ()I
 	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;ILjava/lang/String;)Lorg/kompars/envelop/mox/model/Submission;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Submission;Ljava/lang/String;ILjava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Submission;
+	public final fun copy (Lorg/kompars/envelop/common/EmailAddress;ILjava/lang/String;)Lorg/kompars/envelop/mox/model/Submission;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/mox/model/Submission;Lorg/kompars/envelop/common/EmailAddress;ILjava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/mox/model/Submission;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAddress ()Ljava/lang/String;
+	public final fun getAddress ()Lorg/kompars/envelop/common/EmailAddress;
 	public final fun getFromId ()Ljava/lang/String;
 	public final fun getQueueMessageId ()I
 	public fun hashCode ()I

@@ -3,6 +3,7 @@ package org.kompars.envelop.mox.model
 import io.ktor.http.*
 import kotlinx.datetime.*
 import kotlinx.serialization.*
+import org.kompars.envelop.common.*
 
 /**
  * [Mox documentation](https://pkg.go.dev/github.com/mjl-/mox/webapi#Error)
@@ -46,9 +47,9 @@ public data class Message(
     @SerialName("ReplyTo")
     val replyTo: List<NameAddress> = emptyList(),
     @SerialName("MessageID")
-    val messageId: String? = null,
+    val messageId: EmailMessageId? = null,
     @SerialName("References")
-    val reference: List<String> = emptyList(),
+    val reference: List<EmailMessageId> = emptyList(),
     @SerialName("Date")
     val date: Instant? = null,
     @SerialName("Subject")
@@ -143,13 +144,13 @@ public data class MessageMeta(
     @SerialName("Flags")
     val flags: List<String>,
     @SerialName("MailFrom")
-    val mailFrom: String,
+    val mailFrom: EmailAddress,
     @SerialName("MailFromValidated")
     val mailFromValidated: Boolean,
     @SerialName("RcptTo")
     val rcptTo: String,
     @SerialName("MsgFrom")
-    val msgFrom: String,
+    val msgFrom: EmailAddress,
     @SerialName("MsgFromValidated")
     val msgFromValidated: Boolean,
     @SerialName("DKIMVerifiedDomains")
@@ -205,7 +206,7 @@ public data class NameAddress(
     @SerialName("Name")
     val name: String? = null,
     @SerialName("Address")
-    val address: String,
+    val address: EmailAddress,
 )
 
 /**
@@ -224,9 +225,9 @@ public data class SendRequest(
     @SerialName("ReplyTo")
     val replyTo: List<NameAddress> = emptyList(),
     @SerialName("MessageID")
-    val messageId: String? = null,
+    val messageId: EmailMessageId? = null,
     @SerialName("References")
-    val references: List<String> = emptyList(),
+    val references: List<EmailMessageId> = emptyList(),
     @SerialName("Date")
     val date: Instant? = null,
     @SerialName("Subject")
@@ -259,7 +260,7 @@ public data class SendRequest(
 @Serializable
 public data class SendResult(
     @SerialName("MessageID")
-    val messageId: String,
+    val messageId: EmailMessageId,
     @SerialName("Submissions")
     val submissions: List<Submission>,
 )
@@ -270,7 +271,7 @@ public data class SendResult(
 @Serializable
 public data class Submission(
     @SerialName("Address")
-    val address: String,
+    val address: EmailAddress,
     @SerialName("QueueMsgID")
     val queueMessageId: Int,
     @SerialName("FromID")

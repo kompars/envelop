@@ -13,7 +13,7 @@ import kotlinx.serialization.json.*
 import org.kompars.envelop.common.*
 import org.kompars.envelop.mox.model.*
 
-public class ErrorException(public val code: Int, public val error: Error) : Exception("$code: $error")
+public class ErrorException(public val code: Int, public val error: Error) : RuntimeException("Error using Mox WebAPI - $code: $error")
 
 public class MoxApi(baseUrl: Url, email: EmailAddress, password: String) {
     private val json = Json {

@@ -1,4 +1,4 @@
-public final class org/kompars/envelop/ByteArrayContentProvider : org/kompars/envelop/MailFileContentProvider {
+public final class org/kompars/envelop/ByteArrayContentProvider : org/kompars/envelop/EmailAttachmentContentProvider {
 	public fun <init> ([B)V
 	public fun getContent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -29,108 +29,141 @@ public final class org/kompars/envelop/DeliveryStatus : java/lang/Enum {
 	public static fun values ()[Lorg/kompars/envelop/DeliveryStatus;
 }
 
-public final class org/kompars/envelop/EmailSent {
-	public fun <init> (Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lkotlinx/datetime/Instant;
-	public final fun component3 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;)Lorg/kompars/envelop/EmailSent;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/EmailSent;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/EmailSent;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getId ()Ljava/lang/String;
-	public final fun getSentAt ()Lkotlinx/datetime/Instant;
-	public final fun getSubmissions ()Ljava/util/List;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class org/kompars/envelop/MailFile {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
+public final class org/kompars/envelop/EmailAttachment {
+	public fun <init> (Lorg/kompars/envelop/EmailAttachmentType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/EmailAttachmentType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/kompars/envelop/EmailAttachmentType;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lorg/kompars/envelop/MailFileContentProvider;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;)Lorg/kompars/envelop/MailFile;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/MailFile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;ILjava/lang/Object;)Lorg/kompars/envelop/MailFile;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lorg/kompars/envelop/EmailAttachmentContentProvider;
+	public final fun copy (Lorg/kompars/envelop/EmailAttachmentType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;)Lorg/kompars/envelop/EmailAttachment;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/EmailAttachment;Lorg/kompars/envelop/EmailAttachmentType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;ILjava/lang/Object;)Lorg/kompars/envelop/EmailAttachment;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getContentId ()Ljava/lang/String;
-	public final fun getContentProvider ()Lorg/kompars/envelop/MailFileContentProvider;
+	public final fun getContentProvider ()Lorg/kompars/envelop/EmailAttachmentContentProvider;
 	public final fun getContentType ()Ljava/lang/String;
 	public final fun getName ()Ljava/lang/String;
+	public final fun getType ()Lorg/kompars/envelop/EmailAttachmentType;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class org/kompars/envelop/MailFileContentProvider {
+public abstract interface class org/kompars/envelop/EmailAttachmentContentProvider {
 	public abstract fun getContent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class org/kompars/envelop/MailMessage {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Lkotlinx/datetime/Instant;
-	public final fun component12 ()Ljava/util/List;
-	public final fun component13 ()Ljava/util/List;
+public final class org/kompars/envelop/EmailAttachmentType : java/lang/Enum {
+	public static final field Attachment Lorg/kompars/envelop/EmailAttachmentType;
+	public static final field Inline Lorg/kompars/envelop/EmailAttachmentType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/kompars/envelop/EmailAttachmentType;
+	public static fun values ()[Lorg/kompars/envelop/EmailAttachmentType;
+}
+
+public final class org/kompars/envelop/EmailMessage {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-k64KbRI ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Ljava/util/List;
-	public final fun component4 ()Ljava/util/List;
-	public final fun component5 ()Ljava/util/List;
-	public final fun component6 ()Ljava/util/List;
-	public final fun component7 ()Ljava/util/Map;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;Ljava/util/List;)Lorg/kompars/envelop/MailMessage;
-	public static synthetic fun copy$default (Lorg/kompars/envelop/MailMessage;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/MailMessage;
+	public final fun component4 ()Ljava/util/Map;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/util/List;
+	public final fun component9 ()Lkotlinx/datetime/Instant;
+	public final fun copy-Z-U4FHs (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;)Lorg/kompars/envelop/EmailMessage;
+	public static synthetic fun copy-Z-U4FHs$default (Lorg/kompars/envelop/EmailMessage;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/datetime/Instant;ILjava/lang/Object;)Lorg/kompars/envelop/EmailMessage;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAttachments ()Ljava/util/List;
-	public final fun getBcc ()Ljava/util/List;
-	public final fun getCc ()Ljava/util/List;
-	public final fun getFrom ()Ljava/util/List;
 	public final fun getHeaders ()Ljava/util/Map;
 	public final fun getHtmlBody ()Ljava/lang/String;
-	public final fun getId ()Ljava/lang/String;
-	public final fun getInlineFiles ()Ljava/util/List;
+	public final fun getId-k64KbRI ()Ljava/lang/String;
+	public final fun getRecipients ()Ljava/util/List;
 	public final fun getReferences ()Ljava/util/List;
 	public final fun getSentAt ()Lkotlinx/datetime/Instant;
 	public final fun getSubject ()Ljava/lang/String;
 	public final fun getTextBody ()Ljava/lang/String;
-	public final fun getTo ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class org/kompars/envelop/MailMessageBuilder {
-	public final fun attachment (Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;)V
-	public static synthetic fun attachment$default (Lorg/kompars/envelop/MailMessageBuilder;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;ILjava/lang/Object;)V
+public final class org/kompars/envelop/EmailMessageBuilder {
+	public final fun attachment (Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;)V
+	public final fun attachment (Lorg/kompars/envelop/EmailAttachmentType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;)V
+	public static synthetic fun attachment$default (Lorg/kompars/envelop/EmailMessageBuilder;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;ILjava/lang/Object;)V
+	public static synthetic fun attachment$default (Lorg/kompars/envelop/EmailMessageBuilder;Lorg/kompars/envelop/EmailAttachmentType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;ILjava/lang/Object;)V
 	public final fun bcc (Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun cc (Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun from (Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun header (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun htmlBody (Ljava/lang/String;)V
-	public final fun inlineFile (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;)V
-	public static synthetic fun inlineFile$default (Lorg/kompars/envelop/MailMessageBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/MailFileContentProvider;ILjava/lang/Object;)V
-	public final fun references (Ljava/lang/String;)V
+	public final fun id-uhm7vdU (Ljava/lang/String;)V
+	public final fun inlineFile (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;)V
+	public static synthetic fun inlineFile$default (Lorg/kompars/envelop/EmailMessageBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kompars/envelop/EmailAttachmentContentProvider;ILjava/lang/Object;)V
+	public final fun recipient (Lorg/kompars/envelop/EmailRecipientType;Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun references (Ljava/util/List;)V
+	public final fun replyTo (Lorg/kompars/envelop/common/EmailAddress;)V
 	public final fun subject (Ljava/lang/String;)V
 	public final fun textBody (Ljava/lang/String;)V
 	public final fun to (Lorg/kompars/envelop/common/EmailAddress;)V
 }
 
-public final class org/kompars/envelop/MailMessageBuilderKt {
-	public static final fun send (Lorg/kompars/envelop/MailSender;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class org/kompars/envelop/EmailMessageBuilderKt {
+	public static final fun buildEmailMessage (Lkotlin/jvm/functions/Function1;)Lorg/kompars/envelop/EmailMessage;
 }
 
-public abstract interface class org/kompars/envelop/MailReceiver {
+public abstract interface class org/kompars/envelop/EmailReceiver {
 	public abstract fun onMessage (Lkotlin/jvm/functions/Function2;)V
 }
 
-public abstract interface class org/kompars/envelop/MailSender {
+public final class org/kompars/envelop/EmailRecipient {
+	public fun <init> (Lorg/kompars/envelop/EmailRecipientType;Lorg/kompars/envelop/common/EmailAddress;)V
+	public final fun component1 ()Lorg/kompars/envelop/EmailRecipientType;
+	public final fun component2 ()Lorg/kompars/envelop/common/EmailAddress;
+	public final fun copy (Lorg/kompars/envelop/EmailRecipientType;Lorg/kompars/envelop/common/EmailAddress;)Lorg/kompars/envelop/EmailRecipient;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/EmailRecipient;Lorg/kompars/envelop/EmailRecipientType;Lorg/kompars/envelop/common/EmailAddress;ILjava/lang/Object;)Lorg/kompars/envelop/EmailRecipient;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEmailAddress ()Lorg/kompars/envelop/common/EmailAddress;
+	public final fun getType ()Lorg/kompars/envelop/EmailRecipientType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/EmailRecipientType : java/lang/Enum {
+	public static final field Bcc Lorg/kompars/envelop/EmailRecipientType;
+	public static final field Cc Lorg/kompars/envelop/EmailRecipientType;
+	public static final field From Lorg/kompars/envelop/EmailRecipientType;
+	public static final field ReplyTo Lorg/kompars/envelop/EmailRecipientType;
+	public static final field To Lorg/kompars/envelop/EmailRecipientType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/kompars/envelop/EmailRecipientType;
+	public static fun values ()[Lorg/kompars/envelop/EmailRecipientType;
+}
+
+public abstract interface class org/kompars/envelop/EmailSender {
 	public abstract fun onDelivery (Lkotlin/jvm/functions/Function2;)V
-	public abstract fun send (Lorg/kompars/envelop/MailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun send (Lorg/kompars/envelop/EmailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/EmailSenderKt {
+	public static final fun send (Lorg/kompars/envelop/EmailSender;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/EmailSent {
+	public synthetic fun <init> (Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-YZH9JHE ()Ljava/lang/String;
+	public final fun component2 ()Lkotlinx/datetime/Instant;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy-TiXV-Go (Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;)Lorg/kompars/envelop/EmailSent;
+	public static synthetic fun copy-TiXV-Go$default (Lorg/kompars/envelop/EmailSent;Ljava/lang/String;Lkotlinx/datetime/Instant;Ljava/util/List;ILjava/lang/Object;)Lorg/kompars/envelop/EmailSent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId-YZH9JHE ()Ljava/lang/String;
+	public final fun getSentAt ()Lkotlinx/datetime/Instant;
+	public final fun getSubmissions ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class org/kompars/envelop/Submission {

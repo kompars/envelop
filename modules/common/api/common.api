@@ -20,6 +20,7 @@ public final class org/kompars/envelop/common/EmailAddress$Companion {
 	public static synthetic fun parse$default (Lorg/kompars/envelop/common/EmailAddress$Companion;Ljava/lang/String;ZZILjava/lang/Object;)Lorg/kompars/envelop/common/EmailAddress;
 	public final fun parseOrNull (Ljava/lang/String;ZZ)Lorg/kompars/envelop/common/EmailAddress;
 	public static synthetic fun parseOrNull$default (Lorg/kompars/envelop/common/EmailAddress$Companion;Ljava/lang/String;ZZILjava/lang/Object;)Lorg/kompars/envelop/common/EmailAddress;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 	public final fun tryParse-0E7RQCE (Ljava/lang/String;ZZ)Ljava/lang/Object;
 	public static synthetic fun tryParse-0E7RQCE$default (Lorg/kompars/envelop/common/EmailAddress$Companion;Ljava/lang/String;ZZILjava/lang/Object;)Ljava/lang/Object;
 }
@@ -28,44 +29,92 @@ public final class org/kompars/envelop/common/EmailAddressKt {
 	public static final fun toEmailAddress (Ljava/lang/String;)Lorg/kompars/envelop/common/EmailAddress;
 }
 
-public final class org/kompars/envelop/common/InvalidEmailAddressException : java/lang/RuntimeException {
-	public fun <init> (Lorg/kompars/envelop/common/ParseError;)V
-	public final fun getError ()Lorg/kompars/envelop/common/ParseError;
+public final class org/kompars/envelop/common/EmailAddressParseError : java/lang/Enum {
+	public static final field ADDRESS_TOO_LONG Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field ADDRESS_TOO_SHORT Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field BEGINS_WITH_AT_SYMBOL Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field DISALLOWED_UNQUOTED_CHARACTER Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field DOMAIN_MISSING Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field DOMAIN_PART_ENDS_WITH_DASH Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field DOMAIN_PART_STARTS_WITH_DASH Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field DOMAIN_PART_TOO_LONG Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field DOMAIN_TOO_LONG Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field ENDS_WITH_DOT Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field INVALID_COMMENT Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field INVALID_COMMENT_LOCATION Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field INVALID_DOMAIN_CHARACTER Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field INVALID_IP_DOMAIN Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field INVALID_QUOTE_LOCATION Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field INVALID_WHITESPACE Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field LOCAL_PART_ENDS_WITH_DOT Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field LOCAL_PART_MISSING Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field LOCAL_PART_TOO_LONG Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field MISSING_AT_SYMBOL Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field MISSING_BACKSLASH_ESCAPE Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field MISSING_TOP_LEVEL_DOMAIN Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field MULTIPLE_AT_SYMBOLS Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field MULTIPLE_DOT_SEPARATORS Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field NUMERIC_TLD Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field STARTS_WITH_DOT Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field TOP_LEVEL_DOMAIN_TOO_LONG Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field UNQUOTED_ANGLED_BRACKET Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static final field UNUSED_BACKSLASH_ESCAPE Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/kompars/envelop/common/EmailAddressParseError;
+	public static fun values ()[Lorg/kompars/envelop/common/EmailAddressParseError;
 }
 
-public final class org/kompars/envelop/common/ParseError : java/lang/Enum {
-	public static final field ADDRESS_TOO_LONG Lorg/kompars/envelop/common/ParseError;
-	public static final field ADDRESS_TOO_SHORT Lorg/kompars/envelop/common/ParseError;
-	public static final field BEGINS_WITH_AT_SYMBOL Lorg/kompars/envelop/common/ParseError;
-	public static final field DISALLOWED_UNQUOTED_CHARACTER Lorg/kompars/envelop/common/ParseError;
-	public static final field DOMAIN_MISSING Lorg/kompars/envelop/common/ParseError;
-	public static final field DOMAIN_PART_ENDS_WITH_DASH Lorg/kompars/envelop/common/ParseError;
-	public static final field DOMAIN_PART_STARTS_WITH_DASH Lorg/kompars/envelop/common/ParseError;
-	public static final field DOMAIN_PART_TOO_LONG Lorg/kompars/envelop/common/ParseError;
-	public static final field DOMAIN_TOO_LONG Lorg/kompars/envelop/common/ParseError;
-	public static final field ENDS_WITH_DOT Lorg/kompars/envelop/common/ParseError;
-	public static final field FAILED_CUSTOM_VALIDATION Lorg/kompars/envelop/common/ParseError;
-	public static final field INVALID_COMMENT Lorg/kompars/envelop/common/ParseError;
-	public static final field INVALID_COMMENT_LOCATION Lorg/kompars/envelop/common/ParseError;
-	public static final field INVALID_DOMAIN_CHARACTER Lorg/kompars/envelop/common/ParseError;
-	public static final field INVALID_IP_DOMAIN Lorg/kompars/envelop/common/ParseError;
-	public static final field INVALID_QUOTE_LOCATION Lorg/kompars/envelop/common/ParseError;
-	public static final field INVALID_WHITESPACE Lorg/kompars/envelop/common/ParseError;
-	public static final field LOCAL_PART_ENDS_WITH_DOT Lorg/kompars/envelop/common/ParseError;
-	public static final field LOCAL_PART_MISSING Lorg/kompars/envelop/common/ParseError;
-	public static final field LOCAL_PART_TOO_LONG Lorg/kompars/envelop/common/ParseError;
-	public static final field MISSING_AT_SYMBOL Lorg/kompars/envelop/common/ParseError;
-	public static final field MISSING_BACKSLASH_ESCAPE Lorg/kompars/envelop/common/ParseError;
-	public static final field MISSING_TOP_LEVEL_DOMAIN Lorg/kompars/envelop/common/ParseError;
-	public static final field MULTIPLE_AT_SYMBOLS Lorg/kompars/envelop/common/ParseError;
-	public static final field MULTIPLE_DOT_SEPARATORS Lorg/kompars/envelop/common/ParseError;
-	public static final field NUMERIC_TLD Lorg/kompars/envelop/common/ParseError;
-	public static final field STARTS_WITH_DOT Lorg/kompars/envelop/common/ParseError;
-	public static final field TOP_LEVEL_DOMAIN_TOO_LONG Lorg/kompars/envelop/common/ParseError;
-	public static final field UNQUOTED_ANGLED_BRACKET Lorg/kompars/envelop/common/ParseError;
-	public static final field UNUSED_BACKSLASH_ESCAPE Lorg/kompars/envelop/common/ParseError;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lorg/kompars/envelop/common/ParseError;
-	public static fun values ()[Lorg/kompars/envelop/common/ParseError;
+public final class org/kompars/envelop/common/EmailMessageId {
+	public static final field Companion Lorg/kompars/envelop/common/EmailMessageId$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lorg/kompars/envelop/common/EmailMessageId;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/common/EmailMessageId$Companion {
+	public final fun parse-Z1MxeVE (Ljava/lang/String;Z)Ljava/lang/String;
+	public static synthetic fun parse-Z1MxeVE$default (Lorg/kompars/envelop/common/EmailMessageId$Companion;Ljava/lang/String;ZILjava/lang/Object;)Ljava/lang/String;
+	public final fun random-_XGZYms (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun random-_XGZYms$default (Lorg/kompars/envelop/common/EmailMessageId$Companion;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/kompars/envelop/common/InvalidEmailAddressException : java/lang/RuntimeException {
+	public fun <init> (Lorg/kompars/envelop/common/EmailAddressParseError;)V
+	public final fun getError ()Lorg/kompars/envelop/common/EmailAddressParseError;
+}
+
+public final class org/kompars/envelop/common/serialization/EmailAddressSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/common/serialization/EmailAddressSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/common/EmailAddress;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/common/EmailAddress;)V
+}
+
+public final class org/kompars/envelop/common/serialization/EmailAddressWithIdentifierSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/common/serialization/EmailAddressWithIdentifierSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/common/EmailAddress;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/common/EmailAddress;)V
+}
+
+public final class org/kompars/envelop/common/serialization/EmailMessageIdSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/common/serialization/EmailMessageIdSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize-_XGZYms (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize-wjoKA-M (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
 }
 

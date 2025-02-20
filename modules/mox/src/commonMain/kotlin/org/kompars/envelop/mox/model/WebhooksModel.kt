@@ -2,6 +2,7 @@ package org.kompars.envelop.mox.model
 
 import kotlinx.datetime.*
 import kotlinx.serialization.*
+import org.kompars.envelop.common.*
 
 /**
  * [Mox documentation](https://pkg.go.dev/github.com/mjl-/mox@v0.0.13/webhook#Incoming)
@@ -23,11 +24,11 @@ public data class Incoming(
     @SerialName("Subject")
     val subject: String,
     @SerialName("MessageID")
-    val messageId: String,
+    val messageId: EmailMessageId,
     @SerialName("InReplyTo")
-    val inReplyTo: String?,
+    val inReplyTo: EmailMessageId?,
     @SerialName("References")
-    val references: List<String> = emptyList(),
+    val references: List<EmailMessageId> = emptyList(),
     @SerialName("Date")
     val date: Instant? = null,
     @SerialName("Text")
@@ -69,13 +70,13 @@ public data class IncomingMeta(
     @SerialName("MsgID")
     val messageId: Int,
     @SerialName("MailFrom")
-    val mailFrom: String,
+    val mailFrom: EmailAddress,
     @SerialName("MailFromValidated")
     val mailFromValidated: Boolean,
     @SerialName("MsgFromValidated")
     val msgFromValidated: Boolean,
     @SerialName("RcptTo")
-    val rcptTo: String,
+    val rcptTo: EmailAddress,
     @SerialName("DKIMVerifiedDomains")
     val dkimVerifiedDomains: List<String>,
     @SerialName("RemoteIP")
@@ -106,7 +107,7 @@ public data class Outgoing(
     @SerialName("FromID")
     val fromId: String?,
     @SerialName("MessageID")
-    val messageId: String,
+    val messageId: EmailMessageId,
     @SerialName("Subject")
     val subject: String,
     @SerialName("WebhookQueued")

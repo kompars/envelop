@@ -1,6 +1,6 @@
 package org.kompars.envelop.common
 
-internal object Parser {
+internal object EmailAddressParser {
     fun parse(input: String, allowIdentifier: Boolean, lowerCase: Boolean): Result<EmailAddress> {
         return parseInternal(input.trim(), allowIdentifier, lowerCase)
     }
@@ -8,34 +8,34 @@ internal object Parser {
     private fun parseInternal(input: String, allowIdentifier: Boolean, lowerCase: Boolean): Result<EmailAddress> {
         // email cannot be less than 3 chars (local-part, @, domain)
         if (input.length < 3) {
-            return errorResult(ParseError.ADDRESS_TOO_SHORT)
+            return errorResult(EmailAddressParseError.ADDRESS_TOO_SHORT)
         }
 
         // check for source-routing
         if (input[0] == '@') {
-            return errorResult(ParseError.BEGINS_WITH_AT_SYMBOL)
+            return errorResult(EmailAddressParseError.BEGINS_WITH_AT_SYMBOL)
         }
 
         val size = input.length
 
         // email cannot be more than 320 chars
         if (size > 320) {
-            return errorResult(ParseError.ADDRESS_TOO_LONG)
+            return errorResult(EmailAddressParseError.ADDRESS_TOO_LONG)
         }
 
         // email cannot start with '.'
         if (input[0] == '.') {
-            return errorResult(ParseError.STARTS_WITH_DOT)
+            return errorResult(EmailAddressParseError.STARTS_WITH_DOT)
         }
 
         // email cannot end with '.'
         if (input[size - 1] == '.') {
-            return errorResult(ParseError.ENDS_WITH_DOT)
+            return errorResult(EmailAddressParseError.ENDS_WITH_DOT)
         }
 
         // email cannot end with '-'
         if (input[size - 1] == '-') {
-            return errorResult(ParseError.DOMAIN_PART_ENDS_WITH_DASH)
+            return errorResult(EmailAddressParseError.DOMAIN_PART_ENDS_WITH_DASH)
         }
 
         var atFound = false // set to true when the '@' character is found
@@ -68,7 +68,7 @@ internal object Parser {
             if (c == '<' && !inQuotes && !previousBackslash) {
                 // could be "phrase <address>" format. If not, it's not allowed
                 if (input[size - 1] != '>' || !allowIdentifier) {
-                    return errorResult(ParseError.UNQUOTED_ANGLED_BRACKET)
+                    return errorResult(EmailAddressParseError.UNQUOTED_ANGLED_BRACKET)
                 }
 
                 val innerResult = parseInternal(
@@ -96,12 +96,12 @@ internal object Parser {
             if (c == '@' && !inQuotes && !previousBackslash) {
                 // If we already found an @ outside of quotes, fail
                 if (atFound) {
-                    return errorResult(ParseError.MULTIPLE_AT_SYMBOLS)
+                    return errorResult(EmailAddressParseError.MULTIPLE_AT_SYMBOLS)
                 }
 
                 // If we need an angled bracket we should fail, it's too late
                 if (requireAngledBracket) {
-                    return errorResult(ParseError.INVALID_WHITESPACE)
+                    return errorResult(EmailAddressParseError.INVALID_WHITESPACE)
                 }
 
                 // Otherwise
@@ -117,7 +117,7 @@ internal object Parser {
             if (c == '\n') {
                 // Ensure there are no empty lines
                 if (charactersOnLine <= 0) {
-                    return errorResult(ParseError.INVALID_WHITESPACE)
+                    return errorResult(EmailAddressParseError.INVALID_WHITESPACE)
                 }
 
                 charactersOnLine = 0
@@ -129,7 +129,7 @@ internal object Parser {
             if (requireAtOrDot) {
                 // If we needed to find the @ or . and we didn't, we have to fail
                 if (!isWhitespace(c) && c != '.') {
-                    return errorResult(ParseError.INVALID_COMMENT_LOCATION)
+                    return errorResult(EmailAddressParseError.INVALID_COMMENT_LOCATION)
                 } else {
                     requireAtOrDot = false
                 }
@@ -138,7 +138,7 @@ internal object Parser {
             if (requireAtDotOrComment) {
                 // If we needed to find the @ or . ( and we didn't, we have to fail
                 if (!isWhitespace(c) && c != '.' && c != '(') {
-                    return errorResult(ParseError.INVALID_QUOTE_LOCATION)
+                    return errorResult(EmailAddressParseError.INVALID_QUOTE_LOCATION)
                 } else {
                     requireAtDotOrComment = false
                 }
@@ -151,7 +151,7 @@ internal object Parser {
                         if (!atFound) {
                             requireAngledBracket = true // or in phrase <addr> format
                         } else {
-                            return errorResult(ParseError.INVALID_WHITESPACE)
+                            return errorResult(EmailAddressParseError.INVALID_WHITESPACE)
                         }
                     }
                 }
@@ -177,7 +177,7 @@ internal object Parser {
                 val comment = parseComment(input.substring(i))
 
                 if (comment == null) {
-                    return errorResult(ParseError.INVALID_COMMENT)
+                    return errorResult(EmailAddressParseError.INVALID_COMMENT)
                 }
 
                 val commentStr = comment
@@ -206,7 +206,7 @@ internal object Parser {
             // If we find two dots outside of quotes, fail
             if (c == '.' && previousDot) {
                 if (!inQuotes) {
-                    return errorResult(ParseError.MULTIPLE_DOT_SEPARATORS)
+                    return errorResult(EmailAddressParseError.MULTIPLE_DOT_SEPARATORS)
                 } else {
                     removableQuotePair = false
                 }
@@ -216,7 +216,7 @@ internal object Parser {
                 // No @ found, we're in the local-part
                 // If we are at a new quote: it must be preceded by a dot or at the beginning
                 if (c == '"' && i > 0 && !previousDot && !inQuotes) {
-                    return errorResult(ParseError.INVALID_QUOTE_LOCATION)
+                    return errorResult(EmailAddressParseError.INVALID_QUOTE_LOCATION)
                 }
 
                 // If we are not in quotes, and this character is not the quote, make sure the
@@ -224,7 +224,7 @@ internal object Parser {
                 val mustBeQuoted = DISALLOWED_UNQUOTED_CHARACTERS.contains(c)
 
                 if (c != '"' && !inQuotes && !previousBackslash && mustBeQuoted) {
-                    return errorResult(ParseError.DISALLOWED_UNQUOTED_CHARACTER)
+                    return errorResult(EmailAddressParseError.DISALLOWED_UNQUOTED_CHARACTER)
                 }
 
                 // If we are in quotes and the character requires quotes, mark the pair as not removable
@@ -234,7 +234,7 @@ internal object Parser {
 
                 // If we previously saw a backslash, we must make sure it is being used to quote something
                 if (!inQuotes && previousBackslash && !mustBeQuoted && c != ' ' && c != '\\') {
-                    return errorResult(ParseError.UNUSED_BACKSLASH_ESCAPE)
+                    return errorResult(EmailAddressParseError.UNUSED_BACKSLASH_ESCAPE)
                 }
 
                 if (inQuotes) {
@@ -242,7 +242,7 @@ internal object Parser {
                     // a backlash escape, that it is there
                     if (ALLOWED_QUOTED_WITH_ESCAPE.contains(c)) {
                         if (!previousBackslash) {
-                            return errorResult(ParseError.MISSING_BACKSLASH_ESCAPE)
+                            return errorResult(EmailAddressParseError.MISSING_BACKSLASH_ESCAPE)
                         }
 
                         removableQuotePair = false
@@ -263,7 +263,7 @@ internal object Parser {
                     val ipDomain = input.substring(i)
 
                     if (!ipDomain.startsWith("[") || !ipDomain.endsWith("]") || ipDomain.length < 3) {
-                        return errorResult(ParseError.INVALID_IP_DOMAIN)
+                        return errorResult(EmailAddressParseError.INVALID_IP_DOMAIN)
                     }
 
                     val ip = ipDomain.substring(1, ipDomain.length - 1)
@@ -276,7 +276,7 @@ internal object Parser {
                     }
 
                     if (validatedIp == null) {
-                        return errorResult(ParseError.INVALID_IP_DOMAIN)
+                        return errorResult(EmailAddressParseError.INVALID_IP_DOMAIN)
                     }
 
                     currentDomainPart.append(validatedIp)
@@ -288,15 +288,15 @@ internal object Parser {
 
                 if (c == '.') {
                     if (currentDomainPart.length > 63) {
-                        return errorResult(ParseError.DOMAIN_PART_TOO_LONG)
+                        return errorResult(EmailAddressParseError.DOMAIN_PART_TOO_LONG)
                     }
 
                     if (currentDomainPart[0] == '-') {
-                        return errorResult(ParseError.DOMAIN_PART_STARTS_WITH_DASH)
+                        return errorResult(EmailAddressParseError.DOMAIN_PART_STARTS_WITH_DASH)
                     }
 
                     if (currentDomainPart[currentDomainPart.length - 1] == '-') {
-                        return errorResult(ParseError.DOMAIN_PART_ENDS_WITH_DASH)
+                        return errorResult(EmailAddressParseError.DOMAIN_PART_ENDS_WITH_DASH)
                     }
 
                     currentDomainPart = StringBuilder()
@@ -359,58 +359,58 @@ internal object Parser {
         }
 
         if (!atFound) {
-            return errorResult(ParseError.MISSING_AT_SYMBOL)
+            return errorResult(EmailAddressParseError.MISSING_AT_SYMBOL)
         }
 
         // Check length
         val localPartLen = localPart.length
 
         if (localPartLen == 0) {
-            return errorResult(ParseError.LOCAL_PART_MISSING)
+            return errorResult(EmailAddressParseError.LOCAL_PART_MISSING)
         }
 
         if (localPartLen > 64) {
-            return errorResult(ParseError.LOCAL_PART_TOO_LONG)
+            return errorResult(EmailAddressParseError.LOCAL_PART_TOO_LONG)
         }
 
         val domainLen = domain.length
 
         if (domainLen == 0) {
-            return errorResult(ParseError.DOMAIN_MISSING)
+            return errorResult(EmailAddressParseError.DOMAIN_MISSING)
         }
 
         if (domainLen > 255) {
-            return errorResult(ParseError.DOMAIN_TOO_LONG)
+            return errorResult(EmailAddressParseError.DOMAIN_TOO_LONG)
         }
 
         // Check that local-part does not end with '.'
         if (localPart[localPart.length - 1] == '.') {
-            return errorResult(ParseError.LOCAL_PART_ENDS_WITH_DOT)
+            return errorResult(EmailAddressParseError.LOCAL_PART_ENDS_WITH_DOT)
         }
 
         // Ensure the TLD is not empty or greater than 63 chars
         if (currentDomainPart.isEmpty()) {
-            return errorResult(ParseError.MISSING_TOP_LEVEL_DOMAIN)
+            return errorResult(EmailAddressParseError.MISSING_TOP_LEVEL_DOMAIN)
         }
 
         if (currentDomainPart.length > 63) {
-            return errorResult(ParseError.TOP_LEVEL_DOMAIN_TOO_LONG)
+            return errorResult(EmailAddressParseError.TOP_LEVEL_DOMAIN_TOO_LONG)
         }
 
         // Check that the final domain part does not start with '-'
         // We already checked to make sure it doesn't end with '-'
         if (currentDomainPart[0] == '-') {
-            return errorResult(ParseError.DOMAIN_PART_STARTS_WITH_DASH)
+            return errorResult(EmailAddressParseError.DOMAIN_PART_STARTS_WITH_DASH)
         }
 
         // Ensure the last domain part (TLD) is not all numeric
         if (currentDomainPart.toString().toCharArray().all { it.isDigit() }) {
-            return errorResult(ParseError.NUMERIC_TLD)
+            return errorResult(EmailAddressParseError.NUMERIC_TLD)
         }
 
         // Validate the characters in the domain if it is not an IP address
         if (!isIpAddress && !isValidIdn(domain.toString())) {
-            return errorResult(ParseError.INVALID_DOMAIN_CHARACTER)
+            return errorResult(EmailAddressParseError.INVALID_DOMAIN_CHARACTER)
         }
 
         val finalLocalPart = when (lowerCase) {
@@ -693,7 +693,7 @@ internal object Parser {
         return (c == ' ' || c == '\n' || c == '\r')
     }
 
-    private fun errorResult(reason: ParseError): Result<EmailAddress> {
+    private fun errorResult(reason: EmailAddressParseError): Result<EmailAddress> {
         return Result.failure(InvalidEmailAddressException(reason))
     }
 

@@ -1,8 +1,12 @@
 package org.kompars.envelop.common
 
-public class InvalidEmailAddressException(public val error: ParseError) : RuntimeException("Error parsing email address: $error")
+import kotlinx.serialization.*
+import org.kompars.envelop.common.serialization.*
+
+public class InvalidEmailAddressException(public val error: EmailAddressParseError) : RuntimeException("Error parsing email address: $error")
 
 @ConsistentCopyVisibility
+@Serializable(with = EmailAddressSerializer::class)
 public data class EmailAddress internal constructor(
     val localPart: String,
     val domain: String,
@@ -26,19 +30,19 @@ public data class EmailAddress internal constructor(
         public const val SIMPLE_PATTERN: String = "^[a-z0-9\\.\\+_\\-]+@[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?)+$"
 
         public fun parse(input: String, allowIdentifier: Boolean = false, lowerCase: Boolean = true): EmailAddress {
-            return Parser.parse(input, allowIdentifier, lowerCase).getOrThrow()
+            return EmailAddressParser.parse(input, allowIdentifier, lowerCase).getOrThrow()
         }
 
         public fun parseOrNull(input: String, allowIdentifier: Boolean = false, lowerCase: Boolean = true): EmailAddress? {
-            return Parser.parse(input, allowIdentifier, lowerCase).getOrNull()
+            return EmailAddressParser.parse(input, allowIdentifier, lowerCase).getOrNull()
         }
 
         public fun tryParse(input: String, allowIdentifier: Boolean = false, lowerCase: Boolean = true): Result<EmailAddress> {
-            return Parser.parse(input, allowIdentifier, lowerCase)
+            return EmailAddressParser.parse(input, allowIdentifier, lowerCase)
         }
 
         public fun isValid(input: String, allowIdentifier: Boolean = false): Boolean {
-            return Parser.parse(input, allowIdentifier, false).isSuccess
+            return EmailAddressParser.parse(input, allowIdentifier, false).isSuccess
         }
     }
 }

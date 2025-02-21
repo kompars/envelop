@@ -1,10 +1,11 @@
 package org.kompars.envelop
 
 import kotlinx.datetime.*
+import org.kompars.envelop.blob.*
 import org.kompars.envelop.common.*
 
-public class EmailMessageBuilder internal constructor() {
-    private var id: EmailMessageId? = null
+public class EmailMessageBuilder {
+    private var messageId: EmailMessageId? = null
     private var date: Instant? = null
     private val recipients: MutableList<EmailRecipient> = mutableListOf()
     private val headers: MutableMap<String, String> = mutableMapOf()
@@ -14,8 +15,8 @@ public class EmailMessageBuilder internal constructor() {
     private var htmlBody: String? = null
     private val attachments: MutableList<EmailAttachment> = mutableListOf()
 
-    public fun id(id: EmailMessageId) {
-        this.id = id
+    public fun messageId(messageId: EmailMessageId) {
+        this.messageId = messageId
     }
 
     public fun date(date: Instant) {
@@ -46,8 +47,8 @@ public class EmailMessageBuilder internal constructor() {
         recipient(EmailRecipientType.ReplyTo, address)
     }
 
-    public fun references(ids: List<EmailMessageId>) {
-        references += ids
+    public fun references(messageIds: List<EmailMessageId>) {
+        references += messageIds
     }
 
     public fun header(name: String, value: String) {
@@ -66,33 +67,34 @@ public class EmailMessageBuilder internal constructor() {
         this.htmlBody = htmlBody
     }
 
-    public fun attachment(type: EmailAttachmentType, name: String, contentType: String? = null, contentId: String? = null, contentProvider: EmailAttachmentContentProvider) {
+    public fun attachment(type: EmailAttachmentType, blob: Blob, name: String, contentType: String? = null, contentId: String? = null) {
         val attachment = EmailAttachment(
             type = type,
             name = name,
             contentId = contentId,
             contentType = contentType ?: "application/octet-stream",
-            contentProvider = contentProvider,
+            blob = blob,
         )
 
         attachments.add(attachment)
     }
 
-    public fun attachment(name: String, contentType: String? = null, contentProvider: EmailAttachmentContentProvider) {
-        attachment(EmailAttachmentType.Attachment, name, contentType, null, contentProvider)
+    public fun attachment(blob: Blob, name: String, contentType: String? = null) {
+        attachment(EmailAttachmentType.Attachment, blob, name, contentType)
     }
 
-    public fun inlineFile(name: String, contentId: String, contentType: String? = null, contentProvider: EmailAttachmentContentProvider) {
-        attachment(EmailAttachmentType.Inline, name, contentType, contentId, contentProvider)
+    public fun inlineFile(blob: Blob, name: String, contentId: String, contentType: String? = null) {
+        attachment(EmailAttachmentType.Inline, blob, name, contentType, contentId)
     }
 
-    internal fun build(): EmailMessage {
+    public fun build(): EmailMessage {
         return EmailMessage(
-            id = id,
+            messageId = messageId,
+            date = date,
             recipients = recipients,
             references = references,
             headers = headers,
-            subject = subject,
+            subject = subject ?: "",
             textBody = textBody,
             htmlBody = htmlBody,
             attachments = attachments,

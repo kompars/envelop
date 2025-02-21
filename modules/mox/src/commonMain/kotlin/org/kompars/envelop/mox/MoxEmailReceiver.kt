@@ -3,12 +3,15 @@ package org.kompars.envelop.mox
 import io.ktor.utils.io.*
 import kotlinx.datetime.*
 import org.kompars.envelop.*
+import org.kompars.envelop.blob.*
 import org.kompars.envelop.mox.model.*
 
 public class MoxEmailReceiver(
     private val moxApi: MoxApi,
-    public val incomingWebhooks: MoxIncomingWebhooks = MoxIncomingWebhooks(),
+    private val blobStorage: BlobStorage = InMemoryBlobStorage,
 ) : EmailReceiver {
+    public val incomingWebhooks: MoxIncomingWebhooks = MoxIncomingWebhooks()
+
     override fun onMessage(block: suspend (EmailMessage, Instant) -> Unit) {
         incomingWebhooks.registerCallback { incoming ->
             val files = incoming.structure.flatten()
@@ -21,10 +24,10 @@ public class MoxEmailReceiver(
                 incoming.bcc.toRecipients(EmailRecipientType.Bcc)
 
             val message = EmailMessage(
-                id = incoming.messageId,
+                messageId = incoming.messageId,
                 references = incoming.references,
                 recipients = recipients,
-                date = incoming.date,
+                date = incoming.date ?: incoming.meta.received,
                 subject = incoming.subject,
                 textBody = incoming.text?.ifEmpty { null },
                 htmlBody = incoming.html?.ifEmpty { null },
@@ -49,35 +52,21 @@ public class MoxEmailReceiver(
         }
     }
 
-    private fun Structure.toEmailAttachment(messageId: Int, partPath: List<Int>, contentDisposition: String): EmailAttachment {
-        return EmailAttachment(
-            name = fileName.ifEmpty { null },
-            contentType = contentType.ifEmpty { "application/octet-stream" },
-            contentId = contentId.ifEmpty { null },
-            type = when (contentDisposition) {
-                "inline" -> EmailAttachmentType.Inline
-                else -> EmailAttachmentType.Attachment
-            },
-            contentProvider = MoxContentProvider(
-                moxApi = moxApi,
-                messageId = messageId,
-                partPath = partPath,
-            ),
-        )
-    }
-}
-
-public class MoxContentProvider internal constructor(
-    private val moxApi: MoxApi,
-    private val messageId: Int,
-    private val partPath: List<Int>,
-) : EmailAttachmentContentProvider {
-    override suspend fun getContent(): ByteArray {
+    private suspend fun Structure.toEmailAttachment(messageId: Int, partPath: List<Int>, contentDisposition: String): EmailAttachment {
         val request = MessagePartGetRequest(
             messageId = messageId,
             partPath = partPath,
         )
 
-        return moxApi.messagePartGet(request).toByteArray()
+        return EmailAttachment(
+            name = fileName.ifEmpty { null } ?: contentId.ifEmpty { null } ?: "",
+            contentType = contentType.ifEmpty { "application/octet-stream" },
+            contentId = contentId.ifEmpty { null },
+            blob = blobStorage.write(moxApi.messagePartGet(request).toByteArray()),
+            type = when (contentDisposition) {
+                "inline" -> EmailAttachmentType.Inline
+                else -> EmailAttachmentType.Attachment
+            },
+        )
     }
 }

@@ -17,20 +17,16 @@ public final class org/kompars/envelop/mox/MoxApi {
 	public static synthetic fun messageSend$default (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class org/kompars/envelop/mox/MoxContentProvider : org/kompars/envelop/EmailAttachmentContentProvider {
-	public fun getContent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public final class org/kompars/envelop/mox/MoxEmailReceiver : org/kompars/envelop/EmailReceiver {
-	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;)V
-	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/MoxIncomingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIncomingWebhooks ()Lorg/kompars/envelop/mox/MoxIncomingWebhooks;
 	public fun onMessage (Lkotlin/jvm/functions/Function3;)V
 }
 
 public final class org/kompars/envelop/mox/MoxEmailSender : org/kompars/envelop/EmailSender {
-	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;ZZLorg/kompars/envelop/mox/MoxOutgoingWebhooks;)V
-	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;ZZLorg/kompars/envelop/mox/MoxOutgoingWebhooks;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;Z)V
+	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getOutgoingWebhooks ()Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;
 	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
 	public fun send (Lorg/kompars/envelop/EmailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

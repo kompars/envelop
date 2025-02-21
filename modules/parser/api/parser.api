@@ -1,6 +1,9 @@
-public final class org/kompars/envelop/parser/EmailMessageParserKt {
-	public static final fun fromEml (Lorg/kompars/envelop/EmailMessage$Companion;[B)Lorg/kompars/envelop/EmailMessage;
-	public static final fun fromMimeMessage (Lorg/kompars/envelop/EmailMessage$Companion;Ljakarta/mail/internet/MimeMessage;)Lorg/kompars/envelop/EmailMessage;
-	public static final fun fromMsg (Lorg/kompars/envelop/EmailMessage$Companion;[B)Lorg/kompars/envelop/EmailMessage;
+public final class org/kompars/envelop/parser/EmailParser {
+	public fun <init> ()V
+	public fun <init> (Lorg/kompars/envelop/blob/BlobStorage;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/blob/BlobStorage;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun fromEml ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun fromMimeMessage (Ljakarta/mail/internet/MimeMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun fromMsg ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 

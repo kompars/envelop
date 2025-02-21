@@ -1,20 +1,21 @@
 package org.kompars.envelop.mox
 
 import io.ktor.http.*
-import kotlinx.datetime.*
 import org.kompars.envelop.*
 import org.kompars.envelop.Submission
+import org.kompars.envelop.blob.*
 import org.kompars.envelop.mox.model.*
 
 public class MoxEmailSender(
     private val moxApi: MoxApi,
-    private val requireTls: Boolean = false,
+    private val blobStorage: BlobStorage = InMemoryBlobStorage,
     private val saveSent: Boolean = true,
-    public val outgoingWebhooks: MoxOutgoingWebhooks = MoxOutgoingWebhooks(),
 ) : EmailSender {
+    public val outgoingWebhooks: MoxOutgoingWebhooks = MoxOutgoingWebhooks()
+
     override suspend fun send(message: EmailMessage): EmailSent {
         val sendRequest = SendRequest(
-            messageId = message.id,
+            messageId = message.messageId,
             from = message.recipients.toNameAddresses(EmailRecipientType.From),
             replyTo = message.recipients.toNameAddresses(EmailRecipientType.ReplyTo),
             to = message.recipients.toNameAddresses(EmailRecipientType.To),
@@ -26,28 +27,27 @@ public class MoxEmailSender(
             html = message.htmlBody,
             references = message.references,
             headers = message.headers.map { (key, value) -> listOf(key, value) },
-            requireTls = requireTls,
+            requireTls = false,
             saveSent = saveSent,
         )
 
         val parts = message.attachments.map { attachment ->
             Part(
+                name = attachment.name,
+                contentId = attachment.contentId,
+                contentType = ContentType.parse(attachment.contentType),
+                content = blobStorage.read(attachment.blob),
                 partType = when (attachment.type) {
                     EmailAttachmentType.Attachment -> PartType.AttachedFile
                     EmailAttachmentType.Inline -> PartType.InlineFile
                 },
-                content = attachment.contentProvider.getContent(),
-                name = attachment.name,
-                contentId = attachment.contentId,
-                contentType = ContentType.parse(attachment.contentType),
             )
         }
 
         val response = moxApi.messageSend(sendRequest, parts)
 
         return EmailSent(
-            id = response.messageId,
-            sentAt = Clock.System.now(),
+            messageId = response.messageId,
             submissions = response.submissions.map {
                 Submission(
                     id = it.queueMessageId.toString(),

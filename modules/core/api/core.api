@@ -196,3 +196,8 @@ public final class org/kompars/envelop/blob/InMemoryBlobStorage : org/kompars/en
 	public fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class org/kompars/envelop/utils/ReplyStripper {
+	public static final field INSTANCE Lorg/kompars/envelop/utils/ReplyStripper;
+	public final fun strip (Ljava/lang/String;)Ljava/lang/String;
+}
+

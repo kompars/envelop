@@ -30,6 +30,7 @@ public class MoxApi(baseUrl: Url, email: EmailAddress, password: String) {
             basicAuth(email.withIdentifier(null).toString(), password)
             url {
                 takeFrom(baseUrl)
+                path("/webapi/v0/")
             }
         }
     }

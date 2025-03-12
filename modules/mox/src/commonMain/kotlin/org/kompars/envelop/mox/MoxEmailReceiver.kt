@@ -31,7 +31,7 @@ public class MoxEmailReceiver(
                 subject = incoming.subject,
                 textBody = incoming.text?.ifEmpty { null },
                 htmlBody = incoming.html?.ifEmpty { null },
-                attachments = files.map { (partPath, structure) ->
+                attachments = files.mapNotNull { (partPath, structure) ->
                     structure.toEmailAttachment(incoming.meta.messageId, partPath, structure.contentDisposition)
                 },
             )
@@ -52,7 +52,13 @@ public class MoxEmailReceiver(
         }
     }
 
-    private suspend fun Structure.toEmailAttachment(messageId: Int, partPath: List<Int>, contentDisposition: String): EmailAttachment {
+    private suspend fun Structure.toEmailAttachment(messageId: Int, partPath: List<Int>, contentDisposition: String): EmailAttachment? {
+        val type = when (contentDisposition) {
+            "inline" -> EmailAttachmentType.Inline
+            "attachment" -> EmailAttachmentType.Attachment
+            else -> return null
+        }
+
         val request = MessagePartGetRequest(
             messageId = messageId,
             partPath = partPath,
@@ -62,11 +68,8 @@ public class MoxEmailReceiver(
             name = fileName.ifEmpty { null } ?: contentId.ifEmpty { null } ?: "",
             contentType = contentType.ifEmpty { "application/octet-stream" },
             contentId = contentId.ifEmpty { null },
+            type = type,
             blob = blobStorage.write(moxApi.messagePartGet(request).toByteArray()),
-            type = when (contentDisposition) {
-                "inline" -> EmailAttachmentType.Inline
-                else -> EmailAttachmentType.Attachment
-            },
         )
     }
 }

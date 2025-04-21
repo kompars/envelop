@@ -18,7 +18,7 @@ kotlin {
         commonMain.dependencies {
             api(projects.modules.core)
             implementation(libs.kotlinx.datetime)
-            implementation("org.simplejavamail:simple-java-mail:8.12.5")
+            implementation("org.simplejavamail:simple-java-mail:8.12.6")
         }
     }
 }

@@ -65,11 +65,12 @@ public class GraphApi(
         httpMethod: HttpMethod,
         path: String,
         request: T,
+        contentType: ContentType = ContentType.Application.Json,
     ): U {
         val response = request {
             method = httpMethod
             url(path)
-            contentType(ContentType.Application.Json)
+            contentType(contentType)
             setBody(request)
         }
 

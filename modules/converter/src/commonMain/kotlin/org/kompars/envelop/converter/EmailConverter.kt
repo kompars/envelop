@@ -53,12 +53,8 @@ public class EmailConverter(
         }
 
         if (message.references.isNotEmpty()) {
-            builder.withHeaders(
-                mapOf(
-                    "References" to message.references.map { it.toString() },
-                    "In-Reply-To" to listOf(message.references.firstOrNull()?.toString()),
-                )
-            )
+            builder.withHeader("References", message.references.joinToString(" ") { it.toString() })
+            builder.withHeader("In-Reply-To", message.references.last().toString())
         }
 
         for (recipient in replyTo) {
@@ -103,9 +99,10 @@ public class EmailConverter(
             email.htmlText?.let { htmlBody(it) }
             email.id?.let { messageId(EmailMessageId.parse(it)) }
 
-            val references = email.headers["References"]
-                ?.filterNotNull()
-                ?.ifEmpty { email.headers["In-Reply-To"]?.take(1) }
+            val references = (email.headers["References"] ?: email.headers["In-Reply-To"])
+                ?.single()
+                ?.trim()
+                ?.split(Regex("\\s+"))
                 ?.map { EmailMessageId.parse(it) }
 
             references?.let { references(it) }

@@ -117,6 +117,9 @@ public final class org/kompars/envelop/EmailMessageKt {
 	public static synthetic fun prepareReply$default (Lorg/kompars/envelop/EmailMessage;ZILjava/lang/Object;)Lorg/kompars/envelop/EmailMessage;
 }
 
+public abstract interface class org/kompars/envelop/EmailProvider : org/kompars/envelop/EmailReceiver, org/kompars/envelop/EmailSender {
+}
+
 public abstract interface class org/kompars/envelop/EmailReceiver {
 	public abstract fun onMessage (Lkotlin/jvm/functions/Function3;)V
 }

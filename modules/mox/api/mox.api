@@ -17,6 +17,19 @@ public final class org/kompars/envelop/mox/MoxApi {
 	public static synthetic fun messageSend$default (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/mox/model/SendRequest;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
+public final class org/kompars/envelop/mox/MoxEmailProvider : org/kompars/envelop/EmailProvider, org/kompars/envelop/EmailReceiver, org/kompars/envelop/EmailSender {
+	public final fun getIncomingWebhooks ()Lorg/kompars/envelop/mox/MoxIncomingWebhooks;
+	public final fun getOutgoingWebhooks ()Lorg/kompars/envelop/mox/MoxOutgoingWebhooks;
+	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
+	public fun onMessage (Lkotlin/jvm/functions/Function3;)V
+	public fun send (Lorg/kompars/envelop/EmailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/mox/MoxEmailProviderKt {
+	public static final fun MoxEmailProvider (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;)Lorg/kompars/envelop/mox/MoxEmailProvider;
+	public static synthetic fun MoxEmailProvider$default (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;ILjava/lang/Object;)Lorg/kompars/envelop/mox/MoxEmailProvider;
+}
+
 public final class org/kompars/envelop/mox/MoxEmailReceiver : org/kompars/envelop/EmailReceiver {
 	public fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;)V
 	public synthetic fun <init> (Lorg/kompars/envelop/mox/MoxApi;Lorg/kompars/envelop/blob/BlobStorage;ILkotlin/jvm/internal/DefaultConstructorMarker;)V

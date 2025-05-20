@@ -1,0 +1,101 @@
+public final class org/kompars/envelop/graph/GraphApi {
+	public fun <init> (Lorg/kompars/envelop/graph/GraphConfig;Lorg/kompars/envelop/graph/TokenStorage;)V
+	public final fun request (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/graph/GraphConfig {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/graph/GraphConfig;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/graph/GraphConfig;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/graph/GraphConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClientId ()Ljava/lang/String;
+	public final fun getClientSecret ()Ljava/lang/String;
+	public final fun getTenantId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/graph/GraphEmailProvider : org/kompars/envelop/EmailProvider, org/kompars/envelop/EmailReceiver, org/kompars/envelop/EmailSender {
+	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
+	public fun onMessage (Lkotlin/jvm/functions/Function3;)V
+	public fun send (Lorg/kompars/envelop/EmailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/graph/GraphEmailProviderKt {
+	public static final fun GraphEmailProvider (Lorg/kompars/envelop/graph/GraphApi;Lorg/kompars/envelop/blob/BlobStorage;)Lorg/kompars/envelop/graph/GraphEmailProvider;
+	public static synthetic fun GraphEmailProvider$default (Lorg/kompars/envelop/graph/GraphApi;Lorg/kompars/envelop/blob/BlobStorage;ILjava/lang/Object;)Lorg/kompars/envelop/graph/GraphEmailProvider;
+}
+
+public final class org/kompars/envelop/graph/GraphEmailReceiver : org/kompars/envelop/EmailReceiver {
+	public fun <init> (Lorg/kompars/envelop/graph/GraphApi;Lorg/kompars/envelop/blob/BlobStorage;)V
+	public synthetic fun <init> (Lorg/kompars/envelop/graph/GraphApi;Lorg/kompars/envelop/blob/BlobStorage;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun onMessage (Lkotlin/jvm/functions/Function3;)V
+}
+
+public final class org/kompars/envelop/graph/GraphEmailSender : org/kompars/envelop/EmailSender {
+	public fun <init> (Lorg/kompars/envelop/graph/GraphApi;Lorg/kompars/envelop/blob/BlobStorage;Z)V
+	public synthetic fun <init> (Lorg/kompars/envelop/graph/GraphApi;Lorg/kompars/envelop/blob/BlobStorage;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun onDelivery (Lkotlin/jvm/functions/Function2;)V
+	public fun send (Lorg/kompars/envelop/EmailMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/graph/GraphException : java/lang/RuntimeException {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getError ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/graph/InMemoryTokenStorage : org/kompars/envelop/graph/TokenStorage {
+	public fun <init> ()V
+	public fun get (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun update (Lorg/kompars/envelop/graph/Tokens;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class org/kompars/envelop/graph/TokenStorage {
+	public abstract fun get (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun update (Lorg/kompars/envelop/graph/Tokens;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/kompars/envelop/graph/Tokens {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/graph/Tokens;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/graph/Tokens;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/graph/Tokens;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccessToken ()Ljava/lang/String;
+	public final fun getRefreshToken ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/kompars/envelop/graph/model/Message {
+	public static final field Companion Lorg/kompars/envelop/graph/model/Message$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/kompars/envelop/graph/model/Message;
+	public static synthetic fun copy$default (Lorg/kompars/envelop/graph/model/Message;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/kompars/envelop/graph/model/Message;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/kompars/envelop/graph/model/Message$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/kompars/envelop/graph/model/Message$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/kompars/envelop/graph/model/Message;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/kompars/envelop/graph/model/Message;)V
+}
+
+public final class org/kompars/envelop/graph/model/Message$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+

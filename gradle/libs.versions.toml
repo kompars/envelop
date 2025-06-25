@@ -2,7 +2,7 @@
 dokka = "2.0.0"
 git-versioning = "6.4.4"
 kotlin = "2.2.0"
-kotlinx-bcv = "0.17.0"
+kotlinx-bcv = "0.18.0"
 kotlinx-datetime = "0.6.2"
 kotlinx-html = "0.12.0"
 kotlinx-serialization = "1.8.1"

@@ -2,7 +2,7 @@ package org.kompars.envelop.converter
 
 import jakarta.mail.internet.*
 import java.util.*
-import kotlinx.datetime.*
+import kotlin.time.*
 import org.kompars.envelop.*
 import org.kompars.envelop.blob.*
 import org.kompars.envelop.common.*

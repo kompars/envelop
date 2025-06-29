@@ -1,6 +1,6 @@
 package org.kompars.envelop
 
-import kotlinx.datetime.*
+import kotlin.time.*
 import org.kompars.envelop.common.*
 
 public data class EmailMessage(

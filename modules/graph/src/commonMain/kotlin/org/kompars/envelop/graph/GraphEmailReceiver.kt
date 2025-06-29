@@ -2,7 +2,7 @@ package org.kompars.envelop.graph
 
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlinx.datetime.*
+import kotlin.time.*
 import org.kompars.envelop.*
 import org.kompars.envelop.converter.*
 import org.kompars.envelop.graph.model.*

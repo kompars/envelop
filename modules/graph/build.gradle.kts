@@ -12,6 +12,10 @@ kotlin {
     jvmToolchain(11)
     explicitApi()
 
+    compilerOptions {
+        optIn = listOf("kotlin.time.ExperimentalTime")
+    }
+
     jvm()
 
     sourceSets {
@@ -19,7 +23,6 @@ kotlin {
             api(projects.modules.core)
             implementation(projects.modules.converter)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.kotlinx.datetime)
             implementation(libs.ktor.client.cio)
             implementation(libs.ktor.client.auth)
             implementation(libs.ktor.client.encoding)

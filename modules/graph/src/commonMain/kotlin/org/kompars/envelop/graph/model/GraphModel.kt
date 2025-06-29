@@ -1,6 +1,6 @@
 package org.kompars.envelop.graph.model
 
-import kotlinx.datetime.*
+import kotlin.time.*
 import kotlinx.serialization.*
 
 @Serializable

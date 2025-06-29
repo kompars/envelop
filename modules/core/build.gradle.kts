@@ -12,6 +12,10 @@ kotlin {
     jvmToolchain(11)
     explicitApi()
 
+    compilerOptions {
+        optIn = listOf("kotlin.time.ExperimentalTime")
+    }
+
     jvm()
     linuxX64()
     linuxArm64()
@@ -19,7 +23,6 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.kotlinx.datetime)
             api(projects.modules.common)
         }
     }

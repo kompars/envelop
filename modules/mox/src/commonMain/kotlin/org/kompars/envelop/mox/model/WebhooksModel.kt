@@ -1,6 +1,6 @@
 package org.kompars.envelop.mox.model
 
-import kotlinx.datetime.*
+import kotlin.time.*
 import kotlinx.serialization.*
 import org.kompars.envelop.common.*
 

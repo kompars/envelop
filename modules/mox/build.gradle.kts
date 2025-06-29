@@ -12,6 +12,10 @@ kotlin {
     jvmToolchain(11)
     explicitApi()
 
+    compilerOptions {
+        optIn = listOf("kotlin.time.ExperimentalTime")
+    }
+
     jvm()
     linuxX64()
     linuxArm64()
@@ -20,7 +24,6 @@ kotlin {
         commonMain.dependencies {
             api(projects.modules.core)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.kotlinx.datetime)
             implementation(libs.ktor.client.cio)
             implementation(libs.ktor.client.encoding)
             implementation(libs.ktor.client.content.negotiation)

@@ -1,6 +1,6 @@
 package org.kompars.envelop
 
-import kotlinx.datetime.*
+import kotlin.time.*
 
 public interface EmailReceiver {
     public fun onMessage(block: suspend (EmailMessage, Instant) -> Unit)

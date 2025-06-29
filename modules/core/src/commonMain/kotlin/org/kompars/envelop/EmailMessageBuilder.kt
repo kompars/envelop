@@ -1,6 +1,6 @@
 package org.kompars.envelop
 
-import kotlinx.datetime.*
+import kotlin.time.*
 import org.kompars.envelop.blob.*
 import org.kompars.envelop.common.*
 

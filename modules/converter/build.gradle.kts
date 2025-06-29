@@ -12,13 +12,16 @@ kotlin {
     jvmToolchain(11)
     explicitApi()
 
+    compilerOptions {
+        optIn = listOf("kotlin.time.ExperimentalTime")
+    }
+
     jvm()
 
     sourceSets {
         commonMain.dependencies {
             api(projects.modules.core)
-            implementation(libs.kotlinx.datetime)
-            implementation("org.simplejavamail:simple-java-mail:8.12.6")
+            implementation(libs.simplejavamail)
         }
     }
 }

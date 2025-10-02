@@ -102,7 +102,8 @@ public class EmailConverter(
             val references = (email.headers["References"] ?: email.headers["In-Reply-To"])
                 ?.single()
                 ?.trim()
-                ?.split(Regex("\\s+"))
+                ?.split(Regex("[\\s,]+"))
+                ?.filter { it.isNotBlank() }
                 ?.map { EmailMessageId.parse(it) }
 
             references?.let { references(it) }

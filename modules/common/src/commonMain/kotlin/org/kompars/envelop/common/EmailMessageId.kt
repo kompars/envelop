@@ -9,10 +9,10 @@ import org.kompars.envelop.common.serialization.*
 @Serializable(with = EmailMessageIdSerializer::class)
 public value class EmailMessageId private constructor(public val id: String) {
     init {
-        require(id.isNotBlank()) { "Message ID cannot be blank" }
-        require(id.contains('@')) { "Message ID must contain '@'" }
-        require(id.startsWith('<')) { "Message ID must start with '<'" }
-        require(id.endsWith('>')) { "Message ID must end with '>'" }
+        require(id.isNotBlank()) { "Message ID cannot be blank - ID: '$id'" }
+        require(id.contains('@')) { "Message ID must contain '@' - ID: '$id'" }
+        require(id.startsWith('<')) { "Message ID must start with '<' - ID: '$id'" }
+        require(id.endsWith('>')) { "Message ID must end with '>' - ID: '$id'" }
     }
 
     override fun toString(): String {

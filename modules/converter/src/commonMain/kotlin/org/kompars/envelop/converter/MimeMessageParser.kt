@@ -1,7 +1,5 @@
 package org.kompars.envelop.converter
 
-import io.ktor.http.ContentType
-import io.ktor.http.charset
 import jakarta.mail.Session
 import jakarta.mail.internet.MimeMessage
 import java.util.Properties
@@ -14,18 +12,17 @@ public object MimeMessageParser {
     private val multilineEncodingRegex = "=\\?utf-8\\?B\\?(.*)\\?=\r?\n *=\\?utf-8\\?B\\?(.*)\\?=".toRegex()
 
     public fun parse(eml: ByteArray): MimeMessage {
-        var mimeMessage = MimeMessage(session, eml.inputStream())
-
+        val mimeMessage = MimeMessage(session, eml.inputStream())
         val subject = mimeMessage.subject
-        val charset = ContentType.parse(mimeMessage.contentType).charset()
 
-        if (charset == Charsets.UTF_8 && subject.contains('�')) {
-            logger.warn("Fixing invalid EML - $subject")
+        if (subject.any { it.code == 65533 }) {
+            logger.info("Fixing invalid subject - $subject")
 
             try {
-                mimeMessage = MimeMessage(session, fixMultilineEncoding(eml).inputStream())
+                val fixedMimeMessage = MimeMessage(session, fixMultilineEncoding(eml).inputStream())
+                mimeMessage.subject = fixedMimeMessage.subject
             } catch (e: Exception) {
-                logger.error("Failed to parse fixed EML", e)
+                logger.warn("Failed to fix invalid subject", e)
             }
         }
 

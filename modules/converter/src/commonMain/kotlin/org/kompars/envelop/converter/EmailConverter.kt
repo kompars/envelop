@@ -7,6 +7,7 @@ import kotlin.time.toKotlinInstant
 import org.kompars.envelop.EmailAttachmentType
 import org.kompars.envelop.EmailMessage
 import org.kompars.envelop.EmailRecipientType
+import org.kompars.envelop.blob.Blob
 import org.kompars.envelop.blob.BlobStorage
 import org.kompars.envelop.blob.InMemoryBlobStorage
 import org.kompars.envelop.build
@@ -138,21 +139,29 @@ public class EmailConverter(
                 bcc(EmailAddress.parse(it.address).withIdentifier(it.name))
             }
 
-            email.attachments.forEach {
-                attachment(
-                    blob = blobStorage.write(it.dataSource.inputStream.readAllBytes()),
-                    name = it.dataSource.name,
-                    contentType = it.dataSource.contentType,
+            val blobs = mutableListOf<Blob>()
+
+            email.embeddedImages.forEach { resource ->
+                val blob = blobStorage.write(resource.dataSource.inputStream.readAllBytes())
+
+                inlineFile(
+                    blob = blob.also { blobs.add(it) },
+                    name = resource.dataSource.name,
+                    contentType = resource.dataSource.contentType,
+                    contentId = resource.name!!,
                 )
             }
 
-            email.embeddedImages.forEach {
-                inlineFile(
-                    blob = blobStorage.write(it.dataSource.inputStream.readAllBytes()),
-                    name = it.dataSource.name,
-                    contentType = it.dataSource.contentType,
-                    contentId = it.name!!,
-                )
+            email.attachments.forEach { resource ->
+                val blob = blobStorage.write(resource.dataSource.inputStream.readAllBytes())
+
+                if (blob !in blobs) {
+                    attachment(
+                        blob = blob,
+                        name = resource.dataSource.name,
+                        contentType = resource.dataSource.contentType,
+                    )
+                }
             }
         }
     }

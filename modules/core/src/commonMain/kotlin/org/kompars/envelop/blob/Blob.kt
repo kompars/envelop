@@ -4,6 +4,14 @@ public interface Blob
 
 public class InMemoryBlob(public val byteArray: ByteArray) : Blob {
     public val size: Int get() = byteArray.size
+
+    override fun equals(other: Any?): Boolean {
+        return other is InMemoryBlob && byteArray.contentEquals(other.byteArray)
+    }
+
+    override fun hashCode(): Int {
+        return 31 * byteArray.contentHashCode() + size
+    }
 }
 
 public interface BlobStorage {

@@ -1,14 +1,20 @@
 package org.kompars.envelop.converter
 
-import jakarta.mail.internet.*
-import java.util.*
-import kotlin.time.*
-import org.kompars.envelop.*
-import org.kompars.envelop.blob.*
-import org.kompars.envelop.common.*
-import org.simplejavamail.api.email.*
+import jakarta.mail.internet.MimeMessage
+import java.util.Date
+import kotlin.time.toJavaInstant
+import kotlin.time.toKotlinInstant
+import org.kompars.envelop.EmailAttachmentType
+import org.kompars.envelop.EmailMessage
+import org.kompars.envelop.EmailRecipientType
+import org.kompars.envelop.blob.BlobStorage
+import org.kompars.envelop.blob.InMemoryBlobStorage
+import org.kompars.envelop.build
+import org.kompars.envelop.common.EmailAddress
+import org.kompars.envelop.common.EmailMessageId
+import org.simplejavamail.api.email.Email
 import org.simplejavamail.converter.EmailConverter
-import org.simplejavamail.email.*
+import org.simplejavamail.email.EmailBuilder
 
 public class EmailConverter(
     private val blobStorage: BlobStorage = InMemoryBlobStorage,
@@ -22,7 +28,7 @@ public class EmailConverter(
     }
 
     public suspend fun fromEml(content: ByteArray): EmailMessage {
-        return fromEmail(EmailConverter.emlToEmail(content.inputStream()))
+        return fromEmail(EmailConverter.mimeMessageToEmail(MimeMessageParser.parse(content)))
     }
 
     public suspend fun toEml(message: EmailMessage): ByteArray {

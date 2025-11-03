@@ -22,6 +22,7 @@ kotlin {
         commonMain.dependencies {
             api(projects.modules.core)
             implementation(libs.simplejavamail)
+            implementation(libs.ktor.http)
         }
     }
 }

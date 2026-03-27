@@ -1,5 +1,5 @@
 [versions]
-dokka = "2.1.0"
+dokka = "2.2.0"
 git-versioning = "6.4.4"
 kotlin = "2.3.20"
 kotlinx-bcv = "0.18.1"

@@ -5,7 +5,7 @@ kotlin = "2.3.20"
 kotlinx-bcv = "0.18.1"
 kotlinx-html = "0.12.0"
 kotlinx-serialization = "1.11.0"
-ktor = "3.4.2"
+ktor = "3.4.3"
 maven-publish = "0.36.0"
 simplejavamail = "8.12.6"
 
